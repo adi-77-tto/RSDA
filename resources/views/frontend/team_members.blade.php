@@ -30,82 +30,43 @@
 
                 <div class="container overflow-hidden">
                     <div class="row gy-4 gy-lg-0 gx-xxl-5">
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-                                <div class="card-body p-0">
-                                    <figure class="m-0 p-0">
-                                    <img class="img-fluid" loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="Members">
-                                    <figcaption class="m-0 p-4">
-                                        <h4 class="mb-1">Md. Jane Alam</h4>
-                                        <p class="text-secondary mb-0">Product Manager</p>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->twitter }}" target="blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->instagram }}" target="blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->youtube }}" target="blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
-                                        </div>
-                                    </figcaption>
-                                    </figure>
+                        @if(isset($team) && count($team) > 0)
+                            @foreach($team as $member)
+                            <div class="col-12 col-md-6 col-lg-3">
+                                <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
+                                    <div class="card-body p-0">
+                                        <figure class="m-0 p-0">
+                                        @if($member->photo)
+                                        <img class="img-fluid" loading="lazy" src="{{ asset('images/team_members/'.$member->photo) }}" alt="{{ $member->name }}">
+                                        @else
+                                        <img class="img-fluid" loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="{{ $member->name }}">
+                                        @endif
+                                        <figcaption class="m-0 p-4">
+                                            <h4 class="mb-1">{{ $member->name }}</h4>
+                                            <p class="text-secondary mb-0">{{ $member->designation }}</p>
+                                            @if($member->department)
+                                            <p class="text-muted small mb-2">{{ $member->department }}</p>
+                                            @endif
+                                            @if($member->bio)
+                                            <p class="small">{{ Str::limit($member->bio, 80) }}</p>
+                                            @endif
+                                            <div class="d-flex justify-content-center mt-3">
+                                                <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
+                                                <a href="{{ application()->twitter }}" target="blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
+                                                <a href="{{ application()->instagram }}" target="blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
+                                                <a href="{{ application()->youtube }}" target="blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
+                                            </div>
+                                        </figcaption>
+                                        </figure>
+                                    </div>
                                 </div>
                             </div>
+                            @endforeach
+                        @else
+                        <div class="col-12">
+                            <p class="text-center text-muted fs-5">No team members found.</p>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-                                <div class="card-body p-0">
-                                    <figure class="m-0 p-0">
-                                    <img class="img-fluid" loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="Members">
-                                    <figcaption class="m-0 p-4">
-                                        <h4 class="mb-1">Mohammad Rahman</h4>
-                                        <p class="text-secondary mb-0">Finance Director</p>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->twitter }}" target="blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->instagram }}" target="blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->youtube }}" target="blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
-                                        </div>
-                                    </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-                                <div class="card-body p-0">
-                                    <figure class="m-0 p-0">
-                                    <img class="img-fluid" loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="Members">
-                                    <figcaption class="m-0 p-4">
-                                        <h4 class="mb-1">Aisha Ahmed</h4>
-                                        <p class="text-secondary mb-0">Field Officer</p>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->twitter }}" target="blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->instagram }}" target="blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->youtube }}" target="blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
-                                        </div>
-                                    </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-3">
-                            <div class="card border-0 border-bottom border-primary shadow-sm overflow-hidden">
-                                <div class="card-body p-0">
-                                    <figure class="m-0 p-0">
-                                    <img class="img-fluid" loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="Members">
-                                    <figcaption class="m-0 p-4">
-                                        <h4 class="mb-1">Ahmed Ali</h4>
-                                        <p class="text-secondary mb-0">Program Director</p>
-                                        <div class="d-flex justify-content-center mt-3">
-                                            <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->twitter }}" target="blank"><i class="fa-brands fa-twitter p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->instagram }}" target="blank"><i class="fa-brands fa-instagram p-3 border m-1 rounded"></i></a>
-                                            <a href="{{ application()->youtube }}" target="blank"><i class="fa-brands fa-youtube p-3 border m-1 rounded"></i></a>
-                                        </div>
-                                    </figcaption>
-                                    </figure>
-                                </div>
-                            </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             </section>

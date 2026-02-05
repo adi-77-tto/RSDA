@@ -37,7 +37,8 @@ class frontController extends Controller
 
     // team members
     public function teamMembers(){
-        return view('frontend.team_members');
+        $team = DB::table('team_members')->orderBy('order', 'asc')->get();
+        return view('frontend.team_members', compact('team'));
     }
 
     // origin and legal affilation
@@ -48,12 +49,14 @@ class frontController extends Controller
 
     // executive committee
     public function committee(){
-        return view('frontend.exe_committee');
+        $committee = DB::table('executive_committee')->orderBy('order', 'asc')->get();
+        return view('frontend.exe_committee', compact('committee'));
     }
 
     // Message form Cheif Executive
     public function cheif_msg(){
-        return view('frontend.cheif_message');
+        $message = DB::table('chief_executive_message')->first();
+        return view('frontend.cheif_message', compact('message'));
     }
 
     // Partner and Donor
@@ -64,7 +67,8 @@ class frontController extends Controller
 
     // impact
     public function impact(){
-        return view('frontend.impact');
+        $impact = DB::table('impact')->orderBy('order', 'asc')->get();
+        return view('frontend.impact', compact('impact'));
     }
 
     // Key Focus Area
@@ -103,22 +107,26 @@ class frontController extends Controller
 
     // Programs
     public function programs(){
-        return view('frontend.programs');
+        $programs = DB::table('programs')->orderBy('id', 'desc')->get();
+        return view('frontend.programs', compact('programs'));
     }
 
     // Program View
-    public function programsView(){
-        return view('frontend.featured_prog_view');
+    public function programsView($id){
+        $program = DB::table('programs')->where('id', $id)->first();
+        return view('frontend.featured_prog_view', compact('program'));
     }
 
     // Stories
     public function stories(){
-        return view('frontend.stories');
+        $stories = DB::table('stories')->orderBy('id', 'desc')->get();
+        return view('frontend.stories', compact('stories'));
     }
 
     // Story View
-    public function storiesView(){
-        return view('frontend.story_view');
+    public function storiesView($id){
+        $story = DB::table('stories')->where('id', $id)->first();
+        return view('frontend.story_view', compact('story'));
     }
 
     //__Latest News view__//
@@ -156,7 +164,8 @@ class frontController extends Controller
 
     // Volunteer Opportunities
     public function volOpportunities(){
-        return view('frontend.volunteer_opportunities');
+        $volunteers = DB::table('volunteers')->where('status', 'open')->orderBy('id', 'desc')->get();
+        return view('frontend.volunteer_opportunities', compact('volunteers'));
     }
 
     // Donate
@@ -207,6 +216,7 @@ class frontController extends Controller
 
     // FAQ
     public function faq(){
-        return view('frontend.faq');
+        $faqs = DB::table('faq')->orderBy('order', 'asc')->get();
+        return view('frontend.faq', compact('faqs'));
     }
 }

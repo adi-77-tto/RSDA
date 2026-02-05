@@ -18,74 +18,32 @@
     <div class="container bg-white py-5" data-aos="fade-up">
       <div class="section-title">
         <h2>Success Stories</h2>
+        @if(isset($stories) && count($stories) > 0)
             <div class="row p-3">
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="{{ route('success.stories.view') }}">
+                @foreach($stories as $story)
+                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 mb-3">
+                    <a href="{{ route('success.stories.view', $story->id) }}">
                         <div class="featuredImage">
-                            <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
+                            @if($story->image)
+                            <img src="{{ asset('images/stories/'.$story->image) }}" alt="{{ $story->title }}">
+                            @else
+                            <img src="https://images.pexels.com/photos/1371360/pexels-photo-1371360.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="{{ $story->title }}">
+                            @endif
                             <div class="overlay">
-                                <p class="h4">Women's Empowerment Initiative</p>
-                                <p class="textmuted"> Promoting gender equality and empowerment through education, skill-building, and advocacy for women's rights.</p>
+                                <p class="h4">{{ $story->title }}</p>
+                                <p class="textmuted">{{ Str::limit($story->description, 120) }}</p>
+                                @if($story->beneficiary_name)
+                                <p class="text-white small mt-2"><strong>Beneficiary:</strong> {{ $story->beneficiary_name }}</p>
+                                @endif
                             </div>
                         </div>
                     </a>
                 </div>
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="#">
-                        <div class="featuredImage">
-                            <img src="https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            <div class="overlay">
-                                <p class="h4">Youth Development Project</p>
-                                <p class="textmuted"> Empowering the next generation through mentorship, education, and community engagement to foster leadership.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="#">
-                        <div class="featuredImage">
-                            <img src="https://images.pexels.com/photos/4388165/pexels-photo-4388165.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-                            <div class="overlay">
-                                <p class="h4">Healthcare Access Program</p>
-                                <p class="textmuted">Providing essential healthcare services, awareness campaigns, and medical assistance to underserved communities in Bangladesh.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="#">
-                        <div class="featuredImage">
-                            <img src="https://images.pexels.com/photos/4577718/pexels-photo-4577718.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="">
-                            <div class="overlay">
-                                <p class="h4">Environmental Sustainability Project</p>
-                                <p class="textmuted">Promoting sustainable practices, conservation efforts, and environmental education to safeguard natural resources and mitigate climate change impacts.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="#">
-                        <div class="featuredImage">
-                            <img src="https://images.pexels.com/photos/3449662/pexels-photo-3449662.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="">
-                            <div class="overlay">
-                                <p class="h4">Community Resilience Initiative</p>
-                                <p class="textmuted">Building resilient communities through disaster preparedness, infrastructure development, and livelihood support to enhance local capacities and reduce vulnerabilities.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-10 offset-md-0 offset-sm-1 px-0 ">
-                    <a href="#">
-                        <div class="featuredImage">
-                            <img src="https://images.pexels.com/photos/417344/pexels-photo-417344.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500" alt="">
-                            <div class="overlay">
-                                <p class="h4">Education for All Campaign</p>
-                                <p class="textmuted">Ensuring access to quality education for children from marginalized backgrounds through scholarships, school support programs, and educational resources.</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                @endforeach
             </div>
+        @else
+            <p class="text-center text-muted fs-5">No success stories available at the moment.</p>
+        @endif
         </div>
       </div>
     </div>
