@@ -24,6 +24,12 @@
                         </div>
 
                         <div class="col-md-12">
+                            <label class="form-label">Icon (optional)</label>
+                            <input type="file" name="icon" class="form-control @error('icon') is-invalid @enderror" accept="image/*">
+                            @error('icon')<div class="text-danger">{{ $message }}</div>@enderror
+                        </div>
+
+                        <div class="col-md-12">
                             <label class="form-label">Image (optional)</label>
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*">
                             @error('image')<div class="text-danger">{{ $message }}</div>@enderror

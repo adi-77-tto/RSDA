@@ -32,6 +32,24 @@
                         </div>
 
                         <div class="col-md-12">
+                            <label class="form-label">Replace Icon (optional)</label>
+                            <input type="file" name="icon" class="form-control @error('icon') is-invalid @enderror" accept="image/*">
+                            @error('icon')<div class="text-danger">{{ $message }}</div>@enderror
+
+                            @if (!empty($focus_area->icon_path))
+                                <div class="mt-2">
+                                    <div class="text-muted mb-1">Current icon:</div>
+                                    <img src="{{ asset('storage/' . $focus_area->icon_path) }}" alt="{{ $focus_area->title }} icon" style="max-width: 80px;" class="border rounded p-1 bg-white">
+
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="checkbox" name="remove_icon" value="1" id="remove_icon">
+                                        <label class="form-check-label" for="remove_icon">Remove icon</label>
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
+                        <div class="col-md-12">
                             <label class="form-label">Replace Image (optional)</label>
                             <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" accept="image/*">
                             @error('image')<div class="text-danger">{{ $message }}</div>@enderror
