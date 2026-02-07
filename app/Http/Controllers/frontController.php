@@ -91,6 +91,7 @@ class frontController extends Controller
                     'title' => 'Women Empowerment',
                     'description' => 'AFAD mainly focuses on women empowerment, eradicating the gender Based Violence in community level, sub-distrit, district and national level.  AFAD undertakes initiatives that empower the destitute and neglected portion of women who are deprived from rights and to ensure equal rights and opportunities for them. AFAD  works on acclerating the women dignity and eqaul opportunity. AFAD sensitizes the government and non-government institutions for strengthening the socio-economic status of women, and ensuring the full enforcement of such arrangement though training and advocacy. It also sensitizes and influences the different level of stakeholders (policy makers, local government representatives, media, communities and religious leaders) on GVB. AFAD provides the income generation training to the women for the socio-economic empowerment.',
                     'icon_class' => null,
+                    'icon_path' => null,
                     'image_path' => null,
                     'default_image' => 'img/key_area/power.png',
                 ],
@@ -98,6 +99,7 @@ class frontController extends Controller
                     'title' => 'Community Empowerment',
                     'description' => 'AFAD believes Community empowerment is only possible when everyone’s voices are heard. Women’s voices, particularly those living in poverty, are often unheard. Women often have the least power in communities, usually not knowing their rights or how to realize them, meaning the potential of half the population is not realized. As a result, AFAD Providing people, especially women living in poverty, with the tools to claim entitlements, develop leadership and take collective action through community-level organizations. In parallel, equipping local governments to be more accountable and responsive, creating violence-free enabling environments for women through realizing their potential, and increasing access to information and services. AFAD works on strengthening women-led community based organizations to uphold voices and realize their rights. Awareness for prevention and action to address violence, particularly against women and children. At the same time, though increasing access to the the information, AFAD creating sustainable impact as institutions become more accountable and pro-poor through ensuring access of the community to information.',
                     'icon_class' => null,
+                    'icon_path' => null,
                     'image_path' => null,
                     'default_image' => 'img/key_area/women.png',
                 ],
@@ -105,6 +107,7 @@ class frontController extends Controller
                     'title' => 'Livelihood',
                     'description' => 'AFAD is playing influential role in the development sectors for bringing a sustainable livelihoods and social changes of the women.  AFAD try to  Improve the livelihoods, income and food security of extremely poor women, children and men living on the norther Baangladesh particularly the  island char. AFAD  provide technical skills training, grants or interest-free loans to procure a viable market asset or start a business. Promoting agricultural farming, disaster preparedness, livelihood security, access to finance and micro-enterprise as means of income. AFAD works  for the market linkage.',
                     'icon_class' => null,
+                    'icon_path' => null,
                     'image_path' => null,
                     'default_image' => 'img/key_area/livelihood.png',
                 ],
@@ -112,6 +115,7 @@ class frontController extends Controller
                     'title' => 'Social Protection',
                     'description' => 'Ensure access to health, education and employment opportunities, through community mobilization and linkages with government services, social safety net programs and emergency relief during crises.',
                     'icon_class' => null,
+                    'icon_path' => null,
                     'image_path' => null,
                     'default_image' => 'img/key_area/social.png',
                 ],
@@ -253,7 +257,10 @@ class frontController extends Controller
 
     // Get Contact
     public function contact(){
-        return view('frontend.contact');
+        $head_office = DB::table('contacts')->where('type', 'head_office')->where('status', 'active')->first();
+        $branches = DB::table('contacts')->where('type', 'branch')->where('status', 'active')->get();
+        $persons = DB::table('contacts')->where('type', 'person')->where('status', 'active')->get();
+        return view('frontend.contact', compact('head_office', 'branches', 'persons'));
     }
 
     // Message Store

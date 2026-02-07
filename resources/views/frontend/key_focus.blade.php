@@ -29,7 +29,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.18) 55%, rgba(0,0,0,0.55) 100%);
+        background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.65) 100%);
         pointer-events: none;
     }
     .focus-area-card-content{
@@ -71,9 +71,15 @@
     .focus-area-card--image .focus-area-card-title,
     .focus-area-card--image .focus-area-card-text{
         color: rgba(255,255,255,.92);
+        text-shadow: 0 2px 10px rgba(0,0,0,.45);
     }
     .focus-area-card--image .focus-area-card-text{
         color: rgba(255,255,255,.80);
+    }
+    .focus-area-card--image .focus-area-card-content{
+        background: rgba(0,0,0,.22);
+        border-radius: 14px;
+        padding: 14px;
     }
     .focus-area-card--image .focus-area-icon{
         background: rgba(255,255,255,.14) !important;
@@ -108,8 +114,7 @@
             <div class="focus-area-kicker">WHAT WE DO</div>
             <h2 class="fw-bold mb-2">Our Focus Areas</h2>
             <p class="text-secondary mx-auto mb-0" style="max-width: 720px;">
-                Focus Area সেগমেন্টে আমাদের প্রকল্পগুলো কোন কোন এরিয়ায় ফোকাস করবে—সেই বিষয়ে সংক্ষিপ্ত ধারণা দেওয়া হয়।
-                যেমন: নারীদের জন্য অবকাঠামোগত সুবিধা প্রদান, কমিউনিটি এমপাওয়ারমেন্ট, জীবিকা উন্নয়ন, সামাজিক সুরক্ষা ইত্যাদি।
+                The Focus Area section provides a brief overview of the key areas our projects will prioritize—such as infrastructure support for women, community empowerment, livelihood development, and social protection.
             </p>
         </div>
 
@@ -128,7 +133,12 @@
             @foreach(($focus_areas ?? collect()) as $item)
                 @php
                     $badgeClass = $iconBadgeClasses[$loop->index % count($iconBadgeClasses)];
-                    $iconClass = 'fa-solid fa-bullseye';
+                    $iconClass = !empty($item->icon_class) ? $item->icon_class : 'fa-solid fa-bullseye';
+
+                    $iconUrl = null;
+                    if (!empty($item->icon_path)) {
+                        $iconUrl = asset('storage/' . $item->icon_path);
+                    }
 
                     $imageUrl = null;
                     if (!empty($item->image_path)) {
@@ -144,7 +154,11 @@
                     <div class="focus-area-card {{ $cardClass }}" style="{{ $cardStyle }}">
                         <div class="focus-area-card-content">
                             <div class="focus-area-icon {{ $badgeClass }}">
-                                <i class="{{ $iconClass }}"></i>
+                                @if (!empty($iconUrl))
+                                    <img src="{{ $iconUrl }}" alt="{{ $item->title }} icon">
+                                @else
+                                    <i class="{{ $iconClass }}"></i>
+                                @endif
                             </div>
                             <div class="focus-area-card-title">{{ $item->title }}</div>
                             <p class="focus-area-card-text" style="text-align: justify;">{{ $item->description }}</p>

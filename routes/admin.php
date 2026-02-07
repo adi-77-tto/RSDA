@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\legalAffilationController;
 use App\Http\Controllers\Admin\messageController;
 use App\Http\Controllers\Admin\missionController;
 use App\Http\Controllers\Admin\newsController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\partnersController;
 use App\Http\Controllers\Admin\PaymentMethodController;
 use App\Http\Controllers\Admin\policyController;
@@ -37,8 +38,9 @@ Route::group(['prefix' => 'admin'], function () {
     Auth::routes(['register' => false]);
 });
 
-Route::get('/admin/home', [HomeController::class, 'index'])->name('admin.home');
-Route::get('admin/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
+
+Route::get('/admin/home', [HomeController::class, 'index'])->middleware('auth')->name('admin.home');
+Route::get('admin/dashboard', [HomeController::class, 'index'])->middleware('auth')->name('admin.dashboard');
 
 // Some auth flows still redirect to /home after login.
 // Keep this as a thin shim to the admin dashboard.
@@ -46,7 +48,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 })->middleware('auth')->name('home');
 
-Route::prefix('admin')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
     // slider
     Route::get('/slider/add', [sliderController::class, 'add'])->name('slider.add');
     Route::post('/slider/store', [sliderController::class, 'store'])->name('slider.store');
@@ -95,6 +97,14 @@ Route::prefix('admin')->group(function () {
     Route::get('message/index', [messageController::class, 'index'])->name('message.index');
     Route::get('message/delete/{id}', [messageController::class, 'destroy'])->name('message.delete');
     Route::get('message/view/{id}', [messageController::class, 'view'])->name('message.view');
+
+    // Contact
+    Route::get('contact/add', [ContactController::class, 'add'])->name('contact.add');
+    Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
+    Route::get('contact/index', [ContactController::class, 'index'])->name('contact.index');
+    Route::get('contact/edit/{id}', [ContactController::class, 'edit'])->name('contact.edit');
+    Route::post('contact/update/{id}', [ContactController::class, 'update'])->name('contact.update');
+    Route::get('contact/delete/{id}', [ContactController::class, 'destroy'])->name('contact.delete');
 
     // __ about us__//
     Route::get('about/us/add', [aboutusController::class, 'create'])->name('about.us.create');
