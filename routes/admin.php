@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\projectController;
 use App\Http\Controllers\Admin\sliderController;
 use App\Http\Controllers\Admin\StoryController;
 use App\Http\Controllers\Admin\subscribeController;
+use App\Http\Controllers\Admin\StrategicPlanController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\VolunteerController;
 use Illuminate\Support\Facades\Auth;
@@ -146,6 +147,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('policy/delete/{id}', [policyController::class, 'destroy'])->name('policy.delete');
     Route::get('policy/edit/{id}', [policyController::class, 'edit'])->name('policy.edit');
     Route::post('policy/update/{id}', [policyController::class, 'update'])->name('policy.update');
+
+    // __ Strategic Plan __//
+    Route::get('strategic-plans/create', [StrategicPlanController::class, 'create'])->name('strategic_plans.create');
+    Route::post('strategic-plans/store', [StrategicPlanController::class, 'store'])->name('strategic_plans.store');
+    Route::get('strategic-plans/index', [StrategicPlanController::class, 'index'])->name('strategic_plans.index');
+    Route::get('strategic-plans/delete/{id}', [StrategicPlanController::class, 'destroy'])->name('strategic_plans.delete');
+    Route::get('strategic-plans/edit/{id}', [StrategicPlanController::class, 'edit'])->name('strategic_plans.edit');
+    Route::post('strategic-plans/update/{id}', [StrategicPlanController::class, 'update'])->name('strategic_plans.update');
 
     // __Publications __//
     Route::get('publications/add', [PublicationController::class, 'add'])->name('publications.add');

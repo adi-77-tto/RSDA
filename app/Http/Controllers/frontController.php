@@ -191,7 +191,8 @@ class frontController extends Controller
 
     // Strategic Plan
     public function strategic_plan(){
-        return view('frontend.strategic_plan');
+        $strategicPlans = DB::table('strategic_plans')->orderBy('created_at', 'desc')->get();
+        return view('frontend.strategic_plan', compact('strategicPlans'));
     }
 
     // Policy Guideline

@@ -1,0 +1,130 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class StrategicPlanController extends Controller
+{
+    public function create()
+    {
+        return view('admin.strategic_plans.add');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => 'required|mimes:jpg,jpeg,png,gif,webp|max:2048',
+            'pdf_file' => 'required|mimes:pdf|max:10240',
+        ]);
+
+        $imageName = '';
+        if ($image = $request->file('image')) {
+            $imageName = rand(10000, 99999) . 'strategic_plan_image.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/strategic_plans/images/'), $imageName);
+        }
+
+        $pdfFileName = '';
+        if ($pdfFile = $request->file('pdf_file')) {
+            $pdfFileName = rand(10000, 99999) . 'strategic_plan.' . $pdfFile->getClientOriginalExtension();
+            $pdfFile->move(public_path('images/strategic_plans/pdfs/'), $pdfFileName);
+        }
+
+        DB::table('strategic_plans')->insert([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $imageName,
+            'pdf_file' => $pdfFileName,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->back()->with('success', 'Strategic Plan uploaded successfully');
+    }
+
+    public function index()
+    {
+        $strategicPlans = DB::table('strategic_plans')->orderBy('created_at', 'desc')->get();
+        return view('admin.strategic_plans.index', compact('strategicPlans'));
+    }
+
+    public function edit($id)
+    {
+        $strategicPlan = DB::table('strategic_plans')->where('id', $id)->first();
+        return view('admin.strategic_plans.edit', compact('strategicPlan'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $strategicPlan = DB::table('strategic_plans')->where('id', $id)->first();
+
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'image' => (empty($strategicPlan->image) ? 'required' : 'nullable') . '|mimes:jpg,jpeg,png,gif,webp|max:2048',
+            'pdf_file' => (empty($strategicPlan->pdf_file) ? 'required' : 'nullable') . '|mimes:pdf|max:10240',
+        ]);
+
+        $imageName = $strategicPlan->image;
+        if ($image = $request->file('image')) {
+            if (!empty($strategicPlan->image)) {
+                $oldImage = public_path('images/strategic_plans/images/' . $strategicPlan->image);
+                if (file_exists($oldImage)) {
+                    @unlink($oldImage);
+                }
+            }
+
+            $imageName = rand(10000, 99999) . 'strategic_plan_image.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/strategic_plans/images/'), $imageName);
+        }
+
+        $pdfFileName = $strategicPlan->pdf_file;
+        if ($pdfFile = $request->file('pdf_file')) {
+            if (!empty($strategicPlan->pdf_file)) {
+                $oldPdf = public_path('images/strategic_plans/pdfs/' . $strategicPlan->pdf_file);
+                if (file_exists($oldPdf)) {
+                    @unlink($oldPdf);
+                }
+            }
+
+            $pdfFileName = rand(10000, 99999) . 'strategic_plan.' . $pdfFile->getClientOriginalExtension();
+            $pdfFile->move(public_path('images/strategic_plans/pdfs/'), $pdfFileName);
+        }
+
+        DB::table('strategic_plans')->where('id', $id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'image' => $imageName,
+            'pdf_file' => $pdfFileName,
+            'updated_at' => now(),
+        ]);
+
+        return redirect()->route('strategic_plans.index')->with('success', 'Strategic Plan updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $strategicPlan = DB::table('strategic_plans')->where('id', $id)->first();
+
+        if (!empty($strategicPlan->image)) {
+            $oldImage = public_path('images/strategic_plans/images/' . $strategicPlan->image);
+            if (file_exists($oldImage)) {
+                @unlink($oldImage);
+            }
+        }
+
+        if (!empty($strategicPlan->pdf_file)) {
+            $oldPdf = public_path('images/strategic_plans/pdfs/' . $strategicPlan->pdf_file);
+            if (file_exists($oldPdf)) {
+                @unlink($oldPdf);
+            }
+        }
+
+        DB::table('strategic_plans')->where('id', $id)->delete();
+        return redirect()->back()->with('success', 'Strategic Plan deleted successfully');
+    }
+}

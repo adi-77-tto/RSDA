@@ -385,10 +385,10 @@
 					</a>
 					<ul>
 						<li>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i>Add Strategic Plan</a>
+							<a href="{{ route('strategic_plans.create') }}"><i class="bx bx-right-arrow-alt"></i>Add Strategic Plan</a>
 						</li>
 						<li>
-                            <a href="#"><i class="bx bx-right-arrow-alt"></i>All Strategic Plan</a>
+							<a href="{{ route('strategic_plans.index') }}"><i class="bx bx-right-arrow-alt"></i>All Strategic Plan</a>
 						</li>
 					</ul>
 				</li>
@@ -929,6 +929,7 @@
 		</div>
 	</div>
 	<!--end switcher-->
+
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('admin/assets/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
