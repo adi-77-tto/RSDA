@@ -47,6 +47,7 @@
             background: #ffffff !important;
             width: 100% !important;
             transform: none !important;
+            overflow: visible !important;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1) !important;
             padding-top: 0 !important;
             padding-bottom: 0 !important;
@@ -58,7 +59,12 @@
         }
         
         body {
-            padding-top: 70px !important;
+            padding-top: 65px !important;
+        }
+
+        /* Ensure dropdowns always render on top */
+        .dropdown-menu {
+            z-index: 99999 !important;
         }
     </style>
 </head>

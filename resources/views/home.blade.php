@@ -13,7 +13,7 @@ Rural Society Development Association
             <img src="{{ asset('images/slider/'.$slider->image) }}" class="d-block" alt="RSDA" style="width:100%; height: 600px; object-fit: cover;">
             <div class="carousel-caption" style="position:absolute !important; bottom:30px !important; top:auto !important; left:5% !important; right:10% !important; text-align:left !important;">
                 <h2 class="text-white text-start" style="font-size: 3rem; font-weight: 700;">{{ $slider->title }}</h2>
-                <div class="my-2" style="width:100px;border-bottom:5px solid #a1ae1c;"></div>
+                <div class="my-2" style="width:100px;border-bottom:5px solid #f7ca44;"></div>
                 <p style="font-size:1rem;" class="text-white">
                     {{ $slider->description }}
                 </p>
@@ -124,13 +124,13 @@ Rural Society Development Association
                                 </div>
                                 <div class="fp-card-body">
                                     <h5 class="fp-card-title">{{ Str::limit($program->title, 60) }}</h5>
-                                    <div class="fp-card-tags">
+                                    <p class="fp-card-desc">{{ Str::limit($program->description ?? '', 120) }}</p>
+                                    <div class="d-flex align-items-center justify-content-between">
                                         <span class="fp-tag">{{ ucfirst($program->status ?? 'Active') }}</span>
-                                        <span class="fp-tag fp-tag-alt">Program</span>
+                                        <span class="fp-card-date">
+                                            {{ $program->start_date ? \Carbon\Carbon::parse($program->start_date)->format('M d, Y') : \Carbon\Carbon::parse($program->created_at)->format('M d, Y') }}
+                                        </span>
                                     </div>
-                                    <span class="fp-card-date">
-                                        {{ $program->start_date ? \Carbon\Carbon::parse($program->start_date)->format('M d, Y') : \Carbon\Carbon::parse($program->created_at)->format('M d, Y') }}
-                                    </span>
                                 </div>
                             </div>
                         </a>
@@ -138,9 +138,9 @@ Rural Society Development Association
                 @endforeach
             @else
                 @foreach([
-                    ['title'=>'Women\'s Empowerment Initiative','status'=>'Active','img'=>'https://images.pexels.com/photos/1756959/pexels-photo-1756959.jpeg?auto=compress&cs=tinysrgb&w=400','date'=>'Jan 15, 2024'],
-                    ['title'=>'Youth Development Project','status'=>'Completed','img'=>'https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&w=400','date'=>'Oct 21, 2023'],
-                    ['title'=>'Healthcare Access Program','status'=>'Active','img'=>'https://images.pexels.com/photos/4388165/pexels-photo-4388165.jpeg?auto=compress&cs=tinysrgb&w=400','date'=>'Mar 10, 2024'],
+                    ['title'=>'Women\'s Empowerment Initiative','status'=>'Active','desc'=>'Supporting rural women with skills training, micro-finance and leadership development to build self-reliant communities.','img'=>'https://images.pexels.com/photos/1756959/pexels-photo-1756959.jpeg?auto=compress&cs=tinysrgb&w=400','date'=>'Jan 15, 2024'],
+                    ['title'=>'Youth Development Project','status'=>'Completed','desc'=>'Equipping young people with vocational training, mentorship and civic education to become future community leaders.','img'=>'https://images.pexels.com/photos/2659475/pexels-photo-2659475.jpeg?auto=compress&cs=tinysrgb&w=400','date'=>'Oct 21, 2023'],
+                    ['title'=>'Healthcare Access Program','status'=>'Active','desc'=>'Providing primary healthcare, maternal care and health awareness services to underserved char and river-basin areas.','img'=>'https://images.pexels.com/photos/4388165/pexels-photo-4388165.jpeg?auto=compress&cs=tinysrgb&w=400','date'=>'Mar 10, 2024'],
                 ] as $fp)
                 <div class="col-md-6 col-lg-4 mb-4">
                     <a href="#" class="fp-card-link">
@@ -150,11 +150,11 @@ Rural Society Development Association
                             </div>
                             <div class="fp-card-body">
                                 <h5 class="fp-card-title">{{ $fp['title'] }}</h5>
-                                <div class="fp-card-tags">
+                                <p class="fp-card-desc">{{ $fp['desc'] }}</p>
+                                <div class="d-flex align-items-center justify-content-between">
                                     <span class="fp-tag">{{ $fp['status'] }}</span>
-                                    <span class="fp-tag fp-tag-alt">Program</span>
+                                    <span class="fp-card-date">{{ $fp['date'] }}</span>
                                 </div>
-                                <span class="fp-card-date">{{ $fp['date'] }}</span>
                             </div>
                         </div>
                     </a>

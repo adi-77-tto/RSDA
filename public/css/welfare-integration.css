@@ -76,7 +76,7 @@ a:hover {
     right: 0;
     left: 0;
     top: 0;
-    margin-top: -130px;
+    margin-top: 0;
     background: #fff !important;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
