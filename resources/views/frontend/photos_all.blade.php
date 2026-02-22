@@ -20,7 +20,6 @@
 
         <div class="py-2">
             <h3 class="text-center">PHOTO <span class="text-danger">GALLERY</span></h3>
-            <p class="text-center text-secondary">The sole meaning of life is to serve humanity</p>
         </div>
 
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 mb-5">

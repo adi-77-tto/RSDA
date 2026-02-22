@@ -25,6 +25,7 @@
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Description</th>
+                                <th>Donor</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                     <img src="{{ asset('images/project/'.$project->image) }}" alt="" width="50">
                                 </td>
                                 <td class="align-middle">{{ Str::limit($project->description,30,"...") }}</td>
+                                <td class="align-middle">{{ $project->donor ?? '-' }}</td>
                                 <td class="text-center align-middle">
                                     <a href="{{ route('project.edit',$project->id) }}" class="btn btn-sm btn-primary text-white text-center">
                                         <i class="fadeIn animated bx bx-edit"></i>

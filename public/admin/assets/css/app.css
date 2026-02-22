@@ -62,13 +62,13 @@ a {
 	margin-left: 10px;
 	margin-bottom: 0;
 	letter-spacing: 1px;
-	color: #0d6efd
+	color: #198754
 }
 
 .toggle-icon {
 	font-size: 22px;
 	cursor: pointer;
-	color: #0d6efd
+	color: #198754
 }
 
 .topbar {
@@ -221,9 +221,9 @@ a {
 .sidebar-wrapper .metismenu a:active,
 .sidebar-wrapper .metismenu a:focus,
 .sidebar-wrapper .metismenu a:hover {
-	color: #0d6efd;
+	color: #198754;
 	text-decoration: none;
-	background: rgb(13 110 253 / .12)
+	background: rgb(25 135 84 / .12)
 }
 
 .menu-label {
@@ -342,7 +342,7 @@ a {
 	border-radius: 10px;
 	bottom: 20px;
 	right: 12px;
-	background-color: #0d6efd;
+	background-color: #198754;
 	z-index: 5
 }
 
@@ -529,7 +529,7 @@ a {
 }
 
 .fm-menu .list-group a:hover {
-	background: #0d6efd;
+	background: #198754;
 	color: #fff;
 	transition: all .2s ease-out
 }
@@ -870,7 +870,7 @@ a {
 .invoice header {
 	padding: 10px 0;
 	margin-bottom: 20px;
-	border-bottom: 1px solid #0d6efd
+	border-bottom: 1px solid #198754
 }
 
 .invoice .company-details {
@@ -901,7 +901,7 @@ a {
 
 .invoice .invoice-details .invoice-id {
 	margin-top: 0;
-	color: #0d6efd
+	color: #198754
 }
 
 .invoice main {
@@ -916,7 +916,7 @@ a {
 
 .invoice main .notices {
 	padding-left: 6px;
-	border-left: 6px solid #0d6efd;
+	border-left: 6px solid #198754;
 	background: #e7f2ff;
 	padding: 10px
 }
@@ -948,7 +948,7 @@ a {
 .invoice table td h3 {
 	margin: 0;
 	font-weight: 400;
-	color: #0d6efd;
+	color: #198754;
 	font-size: 1.2em
 }
 
@@ -962,7 +962,7 @@ a {
 .invoice table .no {
 	color: #fff;
 	font-size: 1.6em;
-	background: #0d6efd
+	background: #198754
 }
 
 .invoice table .unit {
@@ -970,7 +970,7 @@ a {
 }
 
 .invoice table .total {
-	background: #0d6efd;
+	background: #198754;
 	color: #fff
 }
 
@@ -993,9 +993,9 @@ a {
 }
 
 .invoice table tfoot tr:last-child td {
-	color: #0d6efd;
+	color: #198754;
 	font-size: 1.4em;
-	border-top: 1px solid #0d6efd
+	border-top: 1px solid #198754
 }
 
 .invoice table tfoot tr td:first-child {
@@ -1157,8 +1157,8 @@ a {
 
 .chat-tab-menu .nav-pills .nav-link.active,
 .chat-tab-menu .nav-pills .show>.nav-link {
-	color: #0d6efd;
-	background-color: rgb(0 123 255 / 0%)
+	color: #198754;
+	background-color: rgb(25 135 84 / 0%)
 }
 
 .chat-title {
@@ -1188,11 +1188,11 @@ a {
 
 .chat-list .list-group-item:hover {
 	border: 1px solid rgb(0 0 0 / 0%);
-	background-color: rgb(13 110 253 / .12)
+	background-color: rgb(25 135 84 / .12)
 }
 
 .chat-list .list-group-item.active {
-	background-color: rgb(13 110 253 / .12)
+	background-color: rgb(25 135 84 / .12)
 }
 
 .chart-online {
@@ -1333,13 +1333,13 @@ a {
 }
 
 .email-navigation a.list-group-item:hover {
-	background-color: rgb(13 110 253 / .12)
+	background-color: rgb(25 135 84 / .12)
 }
 
 .email-navigation a.list-group-item.active {
-	color: #0b5ed7;
+	color: #198754;
 	font-weight: 600;
-	background-color: rgb(13 110 253 / .12)
+	background-color: rgb(25 135 84 / .12)
 }
 
 .email-meeting {
@@ -1452,8 +1452,8 @@ a {
 }
 
 .nav-primary.nav-tabs .nav-link.active {
-	color: #0d6efd;
-	border-color: #0d6efd #0d6efd #fff
+	color: #198754;
+	border-color: #198754 #198754 #fff
 }
 
 .nav-danger.nav-tabs .nav-link.active {
@@ -2162,7 +2162,7 @@ input.search-control-2::placeholder {
 	height: 40px;
 	line-height: 40px;
 	font-size: 24px;
-	background: #0d6efd;
+	background: #198754;
 	box-shadow: 0 .3rem .6rem rgba(0, 0, 0, .13);
 	color: #fff;
 	text-align: center;
@@ -2410,4 +2410,17 @@ input.search-control-2::placeholder {
 	.chat-top-header-menu {
 		display: none
 	}
+}
+
+/* Override Bootstrap primary color in admin to use green */
+.btn-primary {
+	background-color: #198754;
+	border-color: #198754;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+	background-color: #157347;
+	border-color: #157347;
 }

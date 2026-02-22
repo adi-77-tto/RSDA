@@ -7,7 +7,7 @@
     <div class="container">
       <ol>
         <li><a href="{{ url('/') }}">Home</a></li>
-        <li>About AFAD</li>
+        <li>About RSDA</li>
       </ol>
       <h2>Executive Committee</h2>
     </div>
@@ -19,9 +19,11 @@
     <div class="container bg-white py-5" data-aos="fade-up">
 
       <div class="section-title">
-        <h2>Governance Structure/organogram of AFAD</h2>
+        <h2>Governance Structure/Organogram of RSDA</h2>
         <p>
-            The general body of AFAD comprises of 21 renowned women rights activist women and, the Executive Committee (EC) is consisted with 07 women members. The Chief Executive is responsible to the EC and there by GB.  The members of EC are providing different support to the organization on voluntary basis. There is no conflict of interest among the members in EC and GB level. The EC meetings are held regularly on monthly basis and GB meetings are held on six monthly basis. The organization is regularly submitting the Income tax return and VAT according the Govt. rule and regulations.
+           The Rural Society Development Association (RSDA) is governed through a participatory and democratic management structure. The General Committee, consisting of 19 members, is the highest decision-making body of the organization and meets once a year, with provision for special meetings if required.
+
+The Executive Committee (EC) is composed of 7 members, elected by the General Committee every three years, and is responsible for overall governance, including the appointment of the Executive Director. The Executive Director serves as the executive head of RSDA and is accountable to the Executive Committee. The document emphasizes transparency, accountability, and collective responsibility in organizational governance.
         </p>
       </div>
 

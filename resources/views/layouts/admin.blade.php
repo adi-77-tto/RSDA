@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<!--favicon-->
-	<link rel="icon" href="{{ asset('images/application/'.application()->fav_icon) }}" type="image/png" />
+	<link rel="icon" href="{{ asset('images/application/rsda-favicon.png') }}" type="image/png" />
 	<!--plugins-->
 	<link href="{{ asset('admin/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet"/>
 	<link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css') }}" rel="stylesheet" />
@@ -25,7 +25,9 @@
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/dark-theme.css') }}" />
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/semi-dark.css') }}" />
 	<link rel="stylesheet" href="{{ asset('admin/assets/css/header-colors.css') }}" />
-	<title>AFADBD | Admin</title>
+	<!-- Custom Admin Styles -->
+	<link rel="stylesheet" href="{{ asset('admin/assets/css/custom-admin.css') }}" />
+	<title>RSDA | Admin</title>
 </head>
 
 <body>
@@ -33,14 +35,15 @@
 	<div class="wrapper">
 		<!--sidebar wrapper -->
 		<div class="sidebar-wrapper" data-simplebar="true">
-			<div class="sidebar-header">
+			<div class="sidebar-header shadow-sm">
 				<div>
-					<img src="{{ asset('images/application/'.application()->fav_icon) }}" class="logo-icon" alt="logo icon">
+					<img src="{{ asset('images/application/'.application()->main_logo) }}" class="logo-icon" alt="logo icon" style="max-height: 50px;">
 				</div>
 				<div>
-					<h4 class="logo-text text-danger">AFADBD</h4>
+					<h4 class="logo-text text-success fw-bold mb-0">RSDA</h4>
+					<small class="text-muted" style="font-size: 10px;">Admin Panel</small>
 				</div>
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-danger'></i>
+				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-success'></i>
 				</div>
 			</div>
 			<!--navigation-->
@@ -458,15 +461,16 @@
 		<!--end sidebar wrapper -->
 		<!--start header -->
 		<header>
-			<div class="topbar d-flex align-items-center">
+			<div class="topbar d-flex align-items-center shadow-sm">
 				<nav class="navbar navbar-expand">
 
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
 					<div class="search-bar flex-grow-1">
 						<div class="position-relative search-bar-box">
-							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
-							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
+							<input type="text" id="adminSearchInput" class="form-control search-control shadow-sm" placeholder="Type to search sidebar..."> 
+							<span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
+							<span class="position-absolute top-50 search-close translate-middle-y" id="clearSearch"><i class='bx bx-x'></i></span>
 						</div>
 					</div>
 					<div class="top-menu ms-auto">
@@ -474,6 +478,15 @@
 							<li class="nav-item mobile-search-icon">
 								<a class="nav-link" href="#">	<i class='bx bx-search'></i>
 								</a>
+							</li>
+							{{-- Logout Button --}}
+							<li class="nav-item">
+								<a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form-header').submit();" title="Logout">
+									<i class='bx bx-log-out-circle text-danger' style="font-size: 24px;"></i>
+								</a>
+								<form id="logout-form-header" action="{{ route('logout') }}" method="POST" class="d-none">
+									@csrf
+								</form>
 							</li>
 							{{-- <li class="nav-item dropdown dropdown-large">
 								<a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">	<i class='bx bx-category'></i>
@@ -785,12 +798,15 @@
 
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="bx bx-user"></i>
+							<div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle" style="width: 40px; height: 40px;">
+								<i class="bx bx-user" style="font-size: 20px;"></i>
+							</div>
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">{{ Auth::user()->name }}</p>
+								<p class="user-name mb-0 fw-semibold">{{ Auth::user()->name }}</p>
+								<small class="text-muted">Administrator</small>
 							</div>
 						</a>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end shadow">
 							{{-- <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
 							</li> --}}
 							{{-- <li>
@@ -799,7 +815,7 @@
 							<li>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                    <i class='bx bx-log-out-circle'></i>
+                                    <i class='bx bx-log-out-circle text-danger'></i>
                                     <span>Logout</span>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -814,7 +830,7 @@
 		<!--end header -->
 		<!--start page wrapper -->
 		<div class="page-wrapper">
-			<div class="page-content">
+			<div class="page-content" style="min-height: calc(100vh - 120px);">
 
                 @yield('content')
 
@@ -826,8 +842,8 @@
 		<!--end overlay-->
 		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
-		<footer class="page-footer">
-			<p class="mb-0">Copyright © {{ @date('Y') }}. All right reserved AFADBD</p>
+		<footer class="page-footer shadow">
+			<p class="mb-0">Copyright © {{ @date('Y') }}. All rights reserved RSDA | Powered by <a href="#" class="text-decoration-none text-primary">RSDA IT Team</a></p>
 		</footer>
 	</div>
 	<!--end wrapper-->
@@ -952,6 +968,55 @@
 	  <script src="{{ asset('admin/assets/js/index.js') }}"></script>
 	<!--app JS-->
 	<script src="{{ asset('admin/assets/js/app.js') }}"></script>
+	
+	{{-- Admin Sidebar Search Functionality --}}
+	<script>
+		$(document).ready(function() {
+			const searchInput = $('#adminSearchInput');
+			const clearButton = $('#clearSearch');
+			const menuItems = $('#menu li');
+			
+			// Search functionality
+			searchInput.on('keyup', function() {
+				const searchText = $(this).val().toLowerCase();
+				
+				if (searchText === '') {
+					// Show all menu items when search is empty
+					menuItems.show();
+					menuItems.find('ul').show();
+					clearButton.hide();
+					return;
+				}
+				
+				clearButton.show();
+				
+				// Hide all items first
+				menuItems.hide();
+				
+				// Search through menu items
+				menuItems.each(function() {
+					const $item = $(this);
+					const menuText = $item.text().toLowerCase();
+					
+					if (menuText.includes(searchText)) {
+						$item.show();
+						// Show parent items if this is a submenu item
+						$item.parents('li').show();
+						// Show the submenu
+						$item.find('ul').show();
+					}
+				});
+			});
+			
+			// Clear search
+			clearButton.on('click', function() {
+				searchInput.val('');
+				menuItems.show();
+				menuItems.find('ul').show();
+				$(this).hide();
+			});
+		});
+	</script>
 </body>
 
 </html>

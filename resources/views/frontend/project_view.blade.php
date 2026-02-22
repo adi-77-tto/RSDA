@@ -31,6 +31,11 @@
                 <p style="text-align:justify;">
                     {{ $project->description }}
                 </p>
+              @if(!empty($project->donor))
+                <p style="text-align:justify;" class="mt-2">
+                  <strong>Donor:</strong> {{ $project->donor }}
+                </p>
+              @endif
             </div>
             <div class="py-3">
                 <a href="{{ route('ongoing.project') }}" class="btn btn-danger"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Ongoing Project</a>

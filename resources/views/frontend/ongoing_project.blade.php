@@ -34,6 +34,9 @@
                             <p class="card-text py-3">
                                 {{ Str::limit($data->description,75,"...") }}
                             </p>
+                            @if(!empty($data->donor))
+                              <p class="mb-1"><small><strong>Donor:</strong> {{ Str::limit($data->donor, 40, '...') }}</small></p>
+                            @endif
                             <a href="{{ route('ongoing.project.view',$data->id) }}" class="text-primary"> <i class="fa fa-arrow-right" aria-hidden="true"></i> Read More</a>
                         </div>
                     </div>

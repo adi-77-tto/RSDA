@@ -21,7 +21,7 @@
       <div class="section-title">
         <h2>Origin and Legal Affiliation: </h2>
         <p>
-            AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of People's Republic of Government of Bangladesh, and it got the registration (No. DWA/Kuri/Reg/29/99 )  from the Directorate of Women’s Affairs (DWA) in 1999. At the same time, AFAD has the registration from the Directorate of Youth Development, Govt. of Bangladesh.
+           Rural Society Development Association (RSDA) is legally registered with the Department of Social Welfare, Government of the People’s Republic of Bangladesh (Registration No. 481, dated 14 December 1985). The organization is also registered with the Department of Family Planning (Registration No. 225, dated 18 December 1988) and the NGO Affairs Bureau (NGOAB), Government of Bangladesh (Registration No. 1251, renewed on 11 March 2018).
         </p>
       </div>
 

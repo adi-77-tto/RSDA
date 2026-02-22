@@ -1,5 +1,5 @@
 {{-- Footer started --}}
-<div class="bg-dark" style="border-top:5px solid #dc3545;">
+<div class="bg-dark" style="border-top:5px solid #a1ae1c;">
     <div class="container py-5">
         <div class="row" id="footer_link_wrapper">
             {{-- logo and short description --}}
@@ -7,7 +7,7 @@
                 <div>
                     <img src="{{ asset('images/application/'.application()->main_logo) }}" alt="Logo" width="75%">
                     <p class="py-3 text-justified text-white" style="font-size: 14px;">
-                        AFAD is a women led organization working in norther Bangladesh since 1999. AFAD is registered (No. 2443) with NGO Affair’s Bureau (NGOAB) of Prime Minister’s Office of of People's Republic of Government of Bangladesh.
+                       Rural Society Development Association (RSDA) is a non-profit, non-political development organization established in 1984 in Kurigram, Bangladesh. We work with poor and disaster-affected communities—especially women and children—to reduce poverty, build resilience, and promote gender equality. Through community-led development and humanitarian support, RSDA helps people create sustainable and dignified livelihoods.
                     </p>
                 </div>
             </div>
@@ -18,19 +18,19 @@
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">Who we are</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('about.us') }}">About AFAD</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('vision.mission') }}">Mission & Vision</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and legal Affiliation</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('about.us') }}">About RSDA</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('vision.mission') }}">Mission & Vision</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('origin_affilation') }}">Origin and legal Affiliation</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">What we do</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('project.archieve') }}">Project Archieve</a></li>
-                            <li class="py-1"><a class="dropdown-item" href="{{ route('programs.all') }}">Programs</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('key.focus.area') }}">Key Focus Area</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('project.archieve') }}">Project Archieve</a></li>
+                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('programs.all') }}">Programs</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3 py-4">
@@ -84,7 +84,7 @@
 {{-- copyright --}}
 <div class="p-3" style="background: #000;">
     <div class="container text-white d-flex justify-content-between">
-       <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="Association for Alternative Development">AFAD</abbr></small>
+    <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="Rural Society Development Association">RSDA</abbr></small>
        <small> Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small>
     </div>
 </div>

@@ -30,6 +30,13 @@
                             <img src="{{ asset('images/project/'.$project->image) }}" alt="" width="100">
                         </div>
                         <div class="col-md-12">
+                            <label for="donor" class="form-label">Donor (optional)</label>
+                            <input type="text" name="donor" class="form-control @error('donor') is-invalid @enderror" id="donor" value="{{ $project->donor ?? '' }}">
+                            @error('donor')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
                             <label for="description" class="form-label">Description</label>
                             <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3">
                                 {{ $project->description }}

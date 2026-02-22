@@ -31,6 +31,13 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
+                            <label for="donor" class="form-label">Donor (optional)</label>
+                            <input type="text" name="donor" class="form-control @error('donor') is-invalid @enderror" id="donor" value="" placeholder="Enter Donor Name">
+                            @error('donor')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
                             <label for="description" class="form-label">Description<span class="text-danger">*</span></label>
                             <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3">
 

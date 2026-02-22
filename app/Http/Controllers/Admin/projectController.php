@@ -19,6 +19,7 @@ class projectController extends Controller
             'title' => 'required',
             'description' => 'required',
             'image' => 'required|mimes:jpeg,png,jpg',
+            'donor' => 'nullable|string|max:255',
         ]);
 
         $imageName = '';
@@ -31,6 +32,7 @@ class projectController extends Controller
                 'title' => $request->title,
                 'description' => $request->description,
                 'image' => $imageName,
+                'donor' => $request->donor,
             );
 
         DB::table('ongoing_project')->insert($project);
@@ -67,6 +69,7 @@ class projectController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'description' => 'required',
+            'donor' => 'nullable|string|max:255',
         ]);
 
         $project = DB::table('ongoing_project')->where('id',$id)->first();
@@ -88,7 +91,8 @@ class projectController extends Controller
         $project = array(
             'title' => $request->title,
             'description' => $request->description,
-            'image' => $imageName
+            'image' => $imageName,
+            'donor' => $request->donor,
         );
 
         DB::table('ongoing_project')->where('id',$id)->update($project);
