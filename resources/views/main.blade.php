@@ -30,6 +30,9 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="{{ asset('css/welfare-integration.css') }}">
     
+    {{-- Magnific Popup CSS --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+    
     @stack('css')
     
     <style>
@@ -60,6 +63,11 @@
         
         body {
             padding-top: 65px !important;
+        }
+
+        /* Remove any gap before breadcrumbs */
+        .breadcrumbs {
+            margin-top: 0 !important;
         }
 
         /* Ensure dropdowns always render on top */
@@ -111,6 +119,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     {{-- Template JS --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.stellar/0.6.2/jquery.stellar.min.js"></script>
     

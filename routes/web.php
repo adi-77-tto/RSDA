@@ -20,8 +20,12 @@ Route::get('/', function () {
     $programs = DB::table('programs')->orderBy('created_at', 'desc')->take(6)->get();
     $stories = DB::table('stories')->orderBy('id', 'desc')->get();
     $mission_vision = DB::table('mission_vision')->first();
+    $impact = DB::table('impact')->orderBy('order', 'asc')->get();
 
-    return view('home', compact('slider', 'project', 'news', 'gallery', 'application', 'programs', 'stories', 'mission_vision'));
+    // Get the 'People' metric value for the counter
+    $people_metric = DB::table('impact')->whereRaw('LOWER(title) = ?', ['people'])->first();
+
+    return view('home', compact('slider', 'project', 'news', 'gallery', 'application', 'programs', 'stories', 'mission_vision', 'impact', 'people_metric'));
 });
 
 Route::post('user/subscribe', [frontController::class, 'subscribe'])->name('user.subscribe');

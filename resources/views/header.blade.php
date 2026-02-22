@@ -1,7 +1,7 @@
 {{-- Navbar --}}
 <nav class="navbar navbar-expand-lg navbar-light ftco_navbar ftco-navbar-light" id="ftco-navbar">
-    <div class="container" style="max-width: 1200px; padding-left: 0;">
-        <a class="navbar-brand" href="{{ url('/') }}" style="padding: 8px 0; margin-right: 0; margin-left: -5px;">
+    <div class="container-fluid" style="padding-left: 12px; padding-right: 12px;">
+        <a class="navbar-brand" href="{{ url('/') }}" style="padding: 8px 0; margin-right: 0; margin-left: 0;">
             <img src="{{ asset('images/application/'.application()->main_logo) }}" alt="Logo" style="height: 45px;">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -24,12 +24,21 @@
                         <a class="dropdown-item" href="{{ route('about.us') }}">About RSDA</a>
                         <a class="dropdown-item" href="{{ route('vision.mission') }}">Mission, Vision & Values</a>
                         <a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a>
-                        <a class="dropdown-item" href="{{ route('team.members') }}">Team Members</a>
                         <a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a>
-                        <a class="dropdown-item" href="{{ route('executive.committee') }}">Executive Committee</a>
                         <a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a>
                         <a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a>
                         <a class="dropdown-item" href="{{ route('about.impact') }}">Impact</a>
+                    </div>
+                </li>
+
+                {{-- Members --}}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="membersDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Members
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="membersDropdown">
+                        <a class="dropdown-item" href="{{ route('team.members') }}">General Members</a>
+                        <a class="dropdown-item" href="{{ route('executive.committee') }}">Executive Members</a>
                     </div>
                 </li>
 

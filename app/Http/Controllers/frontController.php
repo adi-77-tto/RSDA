@@ -10,7 +10,9 @@ class frontController extends Controller
     // about us
     public function about_us(){
         $about_us = DB::table('about_us')->first();
-        return view('frontend.about_us',compact('about_us'));
+        $team = DB::table('team_members')->orderBy('id', 'asc')->get();
+        $committee = DB::table('executive_committee')->orderBy('order', 'asc')->get();
+        return view('frontend.about_us', compact('about_us', 'team', 'committee'));
     }
 
     // Subscribe

@@ -2,29 +2,11 @@
 
 @section('content')
 
-  <!-- ======= Breadcrumbs ======= -->
-  <section class="breadcrumbs">
-    <div class="container">
-      <ol>
-        <li><a href="{{ url('/') }}">Home</a></li>
-        <li>About RSDA</li>
-      </ol>
-      <h2>Executive Committee</h2>
-    </div>
-  </section>
-  <!-- End Breadcrumbs -->
-
-    <!-- ======= Executive Committee Section ======= -->
   <section id="contact" class="contact bg-light p-0">
     <div class="container bg-white py-5" data-aos="fade-up">
 
       <div class="section-title">
         <h2>Governance Structure/Organogram of RSDA</h2>
-        <p>
-           The Rural Society Development Association (RSDA) is governed through a participatory and democratic management structure. The General Committee, consisting of 19 members, is the highest decision-making body of the organization and meets once a year, with provision for special meetings if required.
-
-The Executive Committee (EC) is composed of 7 members, elected by the General Committee every three years, and is responsible for overall governance, including the appointment of the Executive Director. The Executive Director serves as the executive head of RSDA and is accountable to the Executive Committee. The document emphasizes transparency, accountability, and collective responsibility in organizational governance.
-        </p>
       </div>
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
@@ -35,40 +17,21 @@ The Executive Committee (EC) is composed of 7 members, elected by the General Co
       </div>
 
       @if(isset($committee) && count($committee) > 0)
-      <div class="row mt-5" data-aos="fade-up" data-aos-delay="200">
-        <div class="col-12">
-          <h5 class="mb-4">Executive Committee Members</h5>
-        </div>
+      <div class="row mt-4" data-aos="fade-up" data-aos-delay="200">
         @foreach($committee as $member)
-        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <div class="card h-100 shadow-sm">
-            @if($member->photo)
-            <img src="{{ asset('images/executive_committee/'.$member->photo) }}" class="card-img-top" alt="{{ $member->name }}">
+        <div class="col-12 col-md-6 col-lg-3 text-center mb-5">
+          <div class="mx-auto mb-3" style="width:160px; height:160px; overflow:hidden; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,.1);">
+            @if(isset($member->photo) && $member->photo)
+              <img loading="lazy" src="{{ asset('images/executive_committee/'.$member->photo) }}" alt="{{ $member->name }}" style="width:100%; height:100%; object-fit:cover;">
+            @else
+              <img loading="lazy" src="{{ asset('img/testimonial.jpg') }}" alt="{{ $member->name }}" style="width:100%; height:100%; object-fit:cover;">
             @endif
-            <div class="card-body">
-              <h6 class="card-title">{{ $member->name }}</h6>
-              <p class="card-text text-muted mb-1">{{ $member->designation }}</p>
-              @if($member->bio)
-              <p class="card-text small">{{ Str::limit($member->bio, 100) }}</p>
-              @endif
-              @if($member->facebook || $member->twitter || $member->instagram || $member->youtube)
-              <div class="social-links mt-2">
-                @if($member->facebook)
-                <a href="{{ $member->facebook }}" target="_blank" class="btn btn-sm btn-outline-primary me-1"><i class="bx bxl-facebook"></i></a>
-                @endif
-                @if($member->twitter)
-                <a href="{{ $member->twitter }}" target="_blank" class="btn btn-sm btn-outline-info me-1"><i class="bx bxl-twitter"></i></a>
-                @endif
-                @if($member->instagram)
-                <a href="{{ $member->instagram }}" target="_blank" class="btn btn-sm btn-outline-danger me-1"><i class="bx bxl-instagram"></i></a>
-                @endif
-                @if($member->youtube)
-                <a href="{{ $member->youtube }}" target="_blank" class="btn btn-sm btn-outline-danger"><i class="bx bxl-youtube"></i></a>
-                @endif
-              </div>
-              @endif
-            </div>
           </div>
+          <h5 class="mb-0" style="font-weight:700;">{{ $member->name }}</h5>
+          <p style="font-size:.75rem; letter-spacing:.12em; color:#aaa; text-transform:uppercase; margin-bottom:.6rem;">{{ $member->designation }}</p>
+          @if(isset($member->bio) && $member->bio)
+            <p style="font-size:.9rem; color:#8e6bbf; line-height:1.7;">{{ Str::limit($member->bio, 130) }}</p>
+          @endif
         </div>
         @endforeach
       </div>

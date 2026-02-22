@@ -40,8 +40,8 @@ Rural Society Development Association
             <div class="col-md-6 pr-5">
                 <div class="block-48">
                     <span class="block-48-text-1">Served Over</span>
-                    <div class="block-48-counter ftco-number" data-number="1321901">0</div>
-                    <span class="block-48-text-1 mb-4 d-block">People in 3 Districts</span>
+                    <div class="block-48-counter ftco-number" data-number="{{ preg_replace('/[^0-9]/', '', $people_metric->metric_value ?? '97000') }}">0</div>
+                    <span class="block-48-text-1 mb-4 d-block">people in 1 district &mdash; Kurigram<br><small style="font-size:.75rem; font-weight:400;">(under 1 division, 4 upazilas, and 12 unions)</small></span>
                     <p class="mb-0"><a href="{{ route('programs.all') }}" class="btn btn-white px-3 py-2">View Our Program</a></p>
                 </div>
             </div>
@@ -203,10 +203,7 @@ Rural Society Development Association
                             <span class="donation-time mb-3 d-block"><strong>Donor:</strong> {{ Str::limit($project->donor, 40, '...') }}</span>
                         @endif
                         
-                        {{-- Progress Bar --}}
-                        <div class="progress custom-progress-success mb-3" style="height: 8px;">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: {{ rand(45, 95) }}%;" aria-valuenow="{{ rand(45, 95) }}" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
+
                     </div>
                 </div>
                 @endforeach
@@ -298,12 +295,14 @@ Rural Society Development Association
         <div class="row g-2">
             @foreach ($gallery->take(9) as $key => $data)
                 <div class="col-4 mt-2">
-                    <div class="gallery-item">
-                        <img src="{{ asset('images/gallery/'.$data->image) }}" class="gallery-img" alt="Gallery Image">
-                        <div class="gallery-overlay">
-                            <i class="fa-solid fa-magnifying-glass-plus"></i>
+                    <a href="{{ asset('images/gallery/'.$data->image) }}" class="gallery-lightbox">
+                        <div class="gallery-item">
+                            <img src="{{ asset('images/gallery/'.$data->image) }}" class="gallery-img" alt="Gallery Image">
+                            <div class="gallery-overlay">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             @endforeach
         </div>
@@ -329,6 +328,27 @@ Rural Society Development Association
                 </div>
             </div>
             <div class="row justify-content-center">
+                @forelse($impact as $metric)
+                @php
+                    $titleLower = strtolower($metric->title);
+                    if (str_contains($titleLower, 'people') || str_contains($titleLower, 'beneficiar')) $emoji = '👥';
+                    elseif (str_contains($titleLower, 'district')) $emoji = '📍';
+                    elseif (str_contains($titleLower, 'year')) $emoji = '📅';
+                    elseif (str_contains($titleLower, 'member')) $emoji = '🤝';
+                    elseif (str_contains($titleLower, 'project')) $emoji = '🏗️';
+                    else $emoji = '⭐';
+                @endphp
+                <div class="col-md-2 col-sm-6 col-xs-12 bg-white text-center py-2 mx-2 my-1 rounded">
+                    @if($metric->icon)
+                        <i class="{{ $metric->icon }} text-secondary pt-3"></i>
+                    @else
+                        <i class="fa-solid fa-chart-bar text-secondary pt-3"></i>
+                    @endif
+                    <h6>{{ $metric->title }}</h6>
+                    <h2 style="color:#f7ca44; font-weight:700;">{{ $metric->metric_value }}</h2>
+                    <div style="font-size: 1.4rem; line-height: 1;">{{ $emoji }}</div>
+                </div>
+                @empty
                 {{-- Year --}}
                 <div class="col-md-2 col-sm-6 col-xs-12 bg-white text-center py-2 mx-2 my-1 rounded">
                     <i class="fa-regular fa-calendar-check text-secondary pt-3"></i>
@@ -353,6 +373,7 @@ Rural Society Development Association
                     <h6>People</h6>
                     <h2 style="color:#f7ca44; font-weight:700;">1.3M</h2>
                 </div>
+                @endforelse
             </div>
 
         </div>
@@ -456,6 +477,33 @@ Rural Society Development Association
 <script>
     // Initialize Success Stories Owl Carousel
     $(document).ready(function(){
+        // Gallery Lightbox
+        $('.gallery-lightbox').magnificPopup({
+            type: 'image',
+            closeOnContentClick: true,
+            closeBtnInside: false,
+            fixedContentPos: true,
+            mainClass: 'mfp-with-zoom mfp-img-mobile',
+            image: {
+                verticalFit: true,
+                titleSrc: function(item) {
+                    return '';
+                }
+            },
+            gallery: {
+                enabled: true,
+                navigateByImgClick: true,
+                preload: [0, 1]
+            },
+            zoom: {
+                enabled: true,
+                duration: 300,
+                opener: function(element) {
+                    return element.find('img');
+                }
+            }
+        });
+
         // Animated Counter for Served Over Section
         var a = 0;
         $(window).scroll(function() {
