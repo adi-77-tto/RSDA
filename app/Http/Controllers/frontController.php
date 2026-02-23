@@ -222,7 +222,7 @@ class frontController extends Controller
 
     // Volunteer Opportunities
     public function volOpportunities(){
-        $volunteers = DB::table('volunteers')->where('status', 'open')->orderBy('id', 'desc')->get();
+        $volunteers = DB::table('volunteers')->orderBy('id', 'desc')->get();
         return view('frontend.volunteer_opportunities', compact('volunteers'));
     }
 
@@ -239,7 +239,7 @@ class frontController extends Controller
             'donor_phone' => 'required|string|max:20',
             'transaction_id' => 'required|string|max:255',
             'amount' => 'required|numeric|min:1',
-            'payment_method_id' => 'required|exists:payment_methods,id',
+            'payment_method_id' => 'required|in:bkash,nagad,upay,card',
         ]);
 
         \App\Models\Donation::create([
@@ -247,7 +247,7 @@ class frontController extends Controller
             'donor_phone' => $request->donor_phone,
             'transaction_id' => $request->transaction_id,
             'amount' => $request->amount,
-            'payment_method_id' => $request->payment_method_id,
+            'payment_method' => $request->payment_method_id,
             'status' => 'pending',
         ]);
 

@@ -66,11 +66,7 @@
                                 <td class="px-4 py-3"><code class="bg-light px-2 py-1 rounded">{{ $item->transaction_id }}</code></td>
                                 <td class="px-4 py-3"><strong class="text-success">৳ {{ number_format($item->amount, 2) }}</strong></td>
                                 <td class="px-4 py-3">
-                                    @if($item->paymentMethod)
-                                        <span class="badge bg-info bg-opacity-10 text-info border border-info">{{ ucfirst($item->paymentMethod->type) }}</span>
-                                    @else
-                                        <span class="badge bg-secondary bg-opacity-10 text-secondary">N/A</span>
-                                    @endif
+                                    <span class="badge bg-info bg-opacity-10 text-info border border-info">{{ ucfirst($item->payment_method ?? 'N/A') }}</span>
                                 </td>
                                 <td class="px-4 py-3">
                                     @if($item->status == 'pending')

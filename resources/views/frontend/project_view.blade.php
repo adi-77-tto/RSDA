@@ -37,7 +37,7 @@
                 </p>
               @endif
             </div>
-            <div class="py-3 text-center">
+            <div class="col-12 py-4 text-center">
                 <a href="{{ route('ongoing.project') }}" class="btn btn-warning text-dark fw-bold px-4">
                     <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Ongoing Projects
                 </a>

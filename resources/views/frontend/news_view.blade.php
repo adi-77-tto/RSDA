@@ -32,8 +32,10 @@
                     {{ $news->description }}
                 </p>
             </div>
-            <div class="py-3">
-                <a href="{{ route('latest.news.all') }}" class="btn btn-danger"> <i class="fa fa-angle-left" aria-hidden="true"></i> Back to News & Events </a>
+            <div class="col-12 py-4 text-center">
+                <a href="{{ route('latest.news.all') }}" class="btn btn-warning text-dark fw-bold px-4">
+                    <i class="fa fa-angle-left" aria-hidden="true"></i> Back to News & Events
+                </a>
             </div>
         </div>
       </div>

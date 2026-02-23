@@ -14,7 +14,7 @@ class Donation extends Model
         'donor_phone',
         'transaction_id',
         'amount',
-        'payment_method_id',
+        'payment_method',
         'status',
         'admin_note'
     ];
@@ -22,12 +22,6 @@ class Donation extends Model
     protected $casts = [
         'amount' => 'decimal:2',
     ];
-
-    // Relationship with payment method
-    public function paymentMethod()
-    {
-        return $this->belongsTo(PaymentMethod::class);
-    }
 
     // Scope for pending donations
     public function scopePending($query)

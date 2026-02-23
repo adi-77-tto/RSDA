@@ -138,7 +138,7 @@
     </div>
   </section>
   <!-- Contact Section -->
-<div style="background-image: url('{{ asset('img/donation.jpg') }}')" class="py-5">
+<div style="background-image: url('{{ asset('images/donation_page.png') }}'); background-size:cover; background-position:center;" class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-12 mx-auto text-center">

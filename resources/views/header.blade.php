@@ -64,8 +64,8 @@
                     <div class="dropdown-menu" aria-labelledby="involvedDropdown">
                         <a class="dropdown-item" href="{{ route('volunterr.opportunities') }}">Volunteer Opportunities</a>
                         <a class="dropdown-item" href="{{ route('donate') }}">Donate</a>
-                        <a class="dropdown-item" href="{{ route('fundraising') }}">Fundraising Campaign</a>
-                        <a class="dropdown-item" href="{{ route('corporate.partnership') }}">Corporate Partnership</a>
+                        {{-- <a class="dropdown-item" href="{{ route('fundraising') }}">Fundraising Campaign</a> --}}
+                        {{-- <a class="dropdown-item" href="{{ route('corporate.partnership') }}">Corporate Partnership</a> --}}
                         <a class="dropdown-item" href="{{ route('invoked.career') }}">Career with RSDA</a>
                     </div>
                 </li>

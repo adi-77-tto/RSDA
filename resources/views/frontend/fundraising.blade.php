@@ -18,7 +18,7 @@
     <div class="container bg-white py-5" data-aos="fade-up">
       <div class="section-title">
         <h2>Fundraising</h2>
-        <div style="background-image: url('{{ asset('img/fund.jpg') }}'); background-size:cover;" class="py-5">
+        <div style="background-image: url('{{ asset('images/donation_page.png') }}'); background-size:cover; background-position:center;" class="py-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-12 mx-auto text-center">

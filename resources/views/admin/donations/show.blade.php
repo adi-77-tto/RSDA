@@ -61,13 +61,7 @@
                                     <tr>
                                         <td><strong>Payment Method:</strong></td>
                                         <td>
-                                            @if($data->paymentMethod)
-                                                <span class="badge bg-info">{{ ucfirst($data->paymentMethod->type) }}</span><br>
-                                                <small class="text-muted">{{ $data->paymentMethod->account_name }}</small><br>
-                                                <small class="text-muted">{{ $data->paymentMethod->account_number }}</small>
-                                            @else
-                                                <span class="badge bg-secondary">N/A</span>
-                                            @endif
+                                            <span class="badge bg-info">{{ ucfirst($data->payment_method ?? 'N/A') }}</span>
                                         </td>
                                     </tr>
                                     <tr>

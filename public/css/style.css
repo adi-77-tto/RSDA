@@ -1516,20 +1516,44 @@ nav[id*="navbar"],
 }
 
 .fp-tag {
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 9px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
   border-radius: 20px;
   background: #fdf5d0;
-  color: #7a6000;
+  color: #333;
   border: 1px solid #e8d878;
   white-space: nowrap;
+  display: inline-block;
 }
 
 .fp-tag-alt {
   background: #e6f7ed;
-  color: #1a6040;
+  color: #333;
   border-color: #a8d8bc;
+}
+
+.fp-tag-completed {
+  background: #e2e3e5;
+  color: #333;
+  border: 1px solid #c6c8ca;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 14px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* PDF Card */
+.pdf-card {
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+  border-radius: 10px !important;
+}
+.pdf-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13) !important;
 }
 
 .fp-card-desc {

@@ -33,7 +33,7 @@
                                 {{ Str::limit($program->description, 70, "...") }}
                             </p>
                             <div class="d-flex align-items-center justify-content-between mt-auto">
-                                <span class="badge bg-{{ $program->status == 'active' ? 'success' : ($program->status == 'completed' ? 'secondary' : 'info') }}" style="font-size:10px;">
+                                <span class="fp-tag {{ $program->status == 'active' ? '' : ($program->status == 'completed' ? 'fp-tag-completed' : 'fp-tag-alt') }}" style="font-size:12px; padding:4px 14px;">
                                     {{ ucfirst($program->status) }}
                                 </span>
                                 <a href="{{ route('programs.view', $program->id) }}" class="text-primary" style="font-size:12px; font-weight:600;">
