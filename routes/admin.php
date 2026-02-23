@@ -193,6 +193,32 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('team/edit/{id}', [TeamMemberController::class, 'edit'])->name('team.edit');
     Route::post('team/update/{id}', [TeamMemberController::class, 'update'])->name('team.update');
 
+    // __ Item Images (shared delete route for program/news/project images) __//
+    Route::get('item-image/delete/{id}', function ($id) {
+        $img = \Illuminate\Support\Facades\DB::table('item_images')->where('id', $id)->first();
+        if ($img) {
+            $dirs = ['program' => 'programs', 'news' => 'news', 'project' => 'project'];
+            $dir  = $dirs[$img->item_type] ?? 'programs';
+            @unlink(public_path("images/{$dir}/{$img->image}"));
+            // If was cover, promote the next image as cover
+            if ($img->is_cover) {
+                $next = \Illuminate\Support\Facades\DB::table('item_images')
+                    ->where('item_type', $img->item_type)
+                    ->where('item_id', $img->item_id)
+                    ->where('id', '!=', $id)
+                    ->orderBy('sort_order')->first();
+                if ($next) {
+                    \Illuminate\Support\Facades\DB::table('item_images')->where('id', $next->id)->update(['is_cover' => true]);
+                    // Update cover in main table too
+                    $table = ['program' => 'programs', 'news' => 'latest_news', 'project' => 'ongoing_project'][$img->item_type];
+                    \Illuminate\Support\Facades\DB::table($table)->where('id', $img->item_id)->update(['image' => $next->image]);
+                }
+            }
+            \Illuminate\Support\Facades\DB::table('item_images')->where('id', $id)->delete();
+        }
+        return redirect()->back()->with('success', 'Image deleted successfully');
+    })->middleware('auth')->name('item.image.delete');
+
     // __ Programs __//
     Route::get('programs/add', [ProgramController::class, 'add'])->name('programs.add');
     Route::post('programs/store', [ProgramController::class, 'store'])->name('programs.store');

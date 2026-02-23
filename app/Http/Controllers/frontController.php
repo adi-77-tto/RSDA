@@ -146,8 +146,16 @@ class frontController extends Controller
 
     //__ongoing Project view__//
     public function project_view($id){
-        $project = DB::table('ongoing_project')->where('id',$id)->first();
-        return view('frontend.project_view',compact('project'));
+        $project = DB::table('ongoing_project')->where('id', $id)->first();
+        $images  = DB::table('item_images')
+            ->where('item_type', 'project')
+            ->where('item_id', $id)
+            ->orderBy('sort_order')
+            ->get();
+        if ($images->isEmpty() && $project && $project->image) {
+            $images = collect([(object)['image' => $project->image, 'is_cover' => 1]]);
+        }
+        return view('frontend.project_view', compact('project', 'images'));
     }
 
     //__Latest News All__//
@@ -170,7 +178,16 @@ class frontController extends Controller
     // Program View
     public function programsView($id){
         $program = DB::table('programs')->where('id', $id)->first();
-        return view('frontend.featured_prog_view', compact('program'));
+        $images  = DB::table('item_images')
+            ->where('item_type', 'program')
+            ->where('item_id', $id)
+            ->orderBy('sort_order')
+            ->get();
+        // Fallback to single image if no item_images
+        if ($images->isEmpty() && $program && $program->image) {
+            $images = collect([(object)['image' => $program->image, 'is_cover' => 1]]);
+        }
+        return view('frontend.featured_prog_view', compact('program', 'images'));
     }
 
     // Stories
@@ -187,8 +204,16 @@ class frontController extends Controller
 
     //__Latest News view__//
     public function news_view($id){
-        $news = DB::table('latest_news')->where('id',$id)->first();
-        return view('frontend.news_view',compact('news'));
+        $news   = DB::table('latest_news')->where('id', $id)->first();
+        $images = DB::table('item_images')
+            ->where('item_type', 'news')
+            ->where('item_id', $id)
+            ->orderBy('sort_order')
+            ->get();
+        if ($images->isEmpty() && $news && $news->image) {
+            $images = collect([(object)['image' => $news->image, 'is_cover' => 1]]);
+        }
+        return view('frontend.news_view', compact('news', 'images'));
     }
 
     // Events Calender
@@ -294,8 +319,52 @@ class frontController extends Controller
 
     //__All Photos
     public function all_photos(){
-        $photos = DB::table('gallery')->paginate('30');
-        return view('frontend.photos_all',compact('photos'));
+        // Gallery table images
+        $galleryImgs = DB::table('gallery')
+            ->select(DB::raw("CONCAT('images/gallery/', image) as image_path"), 'title')
+            ->get();
+
+        // Program images
+        $programImgs = DB::table('item_images')
+            ->join('programs', function($join){
+                $join->on('item_images.item_id', '=', 'programs.id')
+                     ->where('item_images.item_type', '=', 'program');
+            })
+            ->select(DB::raw("CONCAT('images/programs/', item_images.image) as image_path"), 'programs.title')
+            ->get();
+
+        // News images
+        $newsImgs = DB::table('item_images')
+            ->join('latest_news', function($join){
+                $join->on('item_images.item_id', '=', 'latest_news.id')
+                     ->where('item_images.item_type', '=', 'news');
+            })
+            ->select(DB::raw("CONCAT('images/news/', item_images.image) as image_path"), 'latest_news.title')
+            ->get();
+
+        // Project images
+        $projectImgs = DB::table('item_images')
+            ->join('ongoing_project', function($join){
+                $join->on('item_images.item_id', '=', 'ongoing_project.id')
+                     ->where('item_images.item_type', '=', 'project');
+            })
+            ->select(DB::raw("CONCAT('images/project/', item_images.image) as image_path"), 'ongoing_project.title')
+            ->get();
+
+        $allPhotos = $galleryImgs->merge($programImgs)->merge($newsImgs)->merge($projectImgs);
+
+        // Manual pagination
+        $perPage  = 30;
+        $page     = request()->get('page', 1);
+        $photos   = new \Illuminate\Pagination\LengthAwarePaginator(
+            $allPhotos->forPage($page, $perPage)->values(),
+            $allPhotos->count(),
+            $perPage,
+            $page,
+            ['path' => request()->url(), 'query' => request()->query()]
+        );
+
+        return view('frontend.photos_all', compact('photos'));
     }
 
     // FAQ

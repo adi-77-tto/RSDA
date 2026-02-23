@@ -1,7 +1,6 @@
 @extends('main')
 
 @section('content')
-
   <!-- ======= Breadcrumbs ======= -->
   <section class="breadcrumbs">
     <div class="container">
@@ -12,40 +11,119 @@
       <h2>Ongoing Project</h2>
     </div>
   </section>
-  <!-- End Breadcrumbs -->
 
-    <!-- ======= Ongoing Project Section ======= -->
-  <section id="contact" class="contact bg-light p-0">
+  <section class="contact bg-light p-0">
     <div class="container bg-white py-5">
 
-        <div class="row">
-            <div class="col-md-4">
-                <img src="{{ asset('images/project/'.$project->image) }}" class="card-img-top" alt="activity" width="100%">
-            </div>
-            <div class="col-md-8 text-left">
-                <h2 class="text-left">{{ $project->title }}</h3>
-                <p class="text-secondary" style="font-size: 12px;">
-                    <i class="fas fa-calendar-minus"></i>
-                    {{ date("d/m/Y  h:i:s a") }}
-                </p>
-                <p style="text-align:justify;">
-                    {{ $project->description }}
-                </p>
-              @if(!empty($project->donor))
-                <p style="text-align:justify;" class="mt-2">
-                  <strong>Donor:</strong> {{ $project->donor }}
-                </p>
-              @endif
-            </div>
-            <div class="col-12 py-4 text-center">
-                <a href="{{ route('ongoing.project') }}" class="btn btn-warning text-dark fw-bold px-4">
-                    <i class="fa fa-angle-left" aria-hidden="true"></i> Back to Ongoing Projects
-                </a>
-            </div>
+      {{-- Image Carousel --}}
+      @if(isset($images) && $images->count())
+      <div class="detail-slider-wrap mx-auto">
+        @if($images->count() > 1)
+        <button class="detail-arrow detail-arrow-left" onclick="detailSlide('projSlider', -1)" aria-label="Previous">
+          <i class="fa fa-chevron-left"></i>
+        </button>
+        @endif
+
+        <div class="detail-slider" id="projSlider">
+          @foreach($images as $idx => $img)
+          <div class="detail-slide" style="display:{{ $idx === 0 ? 'block' : 'none' }}">
+            <img src="{{ asset('images/project/'.$img->image) }}" alt="{{ $project->title }}">
+          </div>
+          @endforeach
         </div>
+
+        @if($images->count() > 1)
+        <button class="detail-arrow detail-arrow-right" onclick="detailSlide('projSlider', 1)" aria-label="Next">
+          <i class="fa fa-chevron-right"></i>
+        </button>
+        <div class="detail-counter" id="projSliderCounter">1 / {{ $images->count() }}</div>
+        @endif
+      </div>
+      @endif
+
+      {{-- Title --}}
+      <h2 class="text-center mt-4 mb-1">{{ $project->title }}</h2>
+      <p class="text-center text-secondary mb-3" style="font-size:13px">
+        <i class="fas fa-calendar-minus"></i> {{ date('d/m/Y') }}
+      </p>
+
+      {{-- Description --}}
+      <p style="text-align:justify; max-width:820px; margin:0 auto;">{{ $project->description }}</p>
+
+      @if(!empty($project->donor))
+      <p class="text-center mt-2"><strong>Donor:</strong> {{ $project->donor }}</p>
+      @endif
+
+      <div class="text-center py-4">
+        <a href="{{ route('ongoing.project') }}" class="btn btn-warning text-dark fw-bold px-4">
+          <i class="fa fa-angle-left"></i> Back to Ongoing Projects
+        </a>
       </div>
 
     </div>
-  </section><!-- End Ongoing Project Section -->
-
+  </section>
 @endsection
+
+@push('css')
+<style>
+.detail-slider-wrap {
+  position: relative;
+  max-width: 760px;
+  display: flex;
+  align-items: center;
+}
+.detail-slider { flex: 1; min-width: 0; }
+.detail-slide img {
+  width: 100%;
+  max-height: 460px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+}
+.detail-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background .2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+.detail-arrow:hover { background: rgba(0,0,0,0.85); }
+.detail-arrow-left { margin-right: 10px; }
+.detail-arrow-right { margin-left: 10px; }
+.detail-counter {
+  position: absolute;
+  bottom: 10px;
+  right: 60px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 12px;
+  padding: 2px 9px;
+  border-radius: 10px;
+  pointer-events: none;
+}
+</style>
+@endpush
+
+@push('js')
+<script>
+function detailSlide(id, dir) {
+  var slider = document.getElementById(id);
+  var slides = slider.querySelectorAll('.detail-slide');
+  var cur = Array.from(slides).findIndex(function(s){ return s.style.display !== 'none'; });
+  slides[cur].style.display = 'none';
+  cur = (cur + dir + slides.length) % slides.length;
+  slides[cur].style.display = 'block';
+  var counter = document.getElementById(id + 'Counter');
+  if (counter) counter.textContent = (cur + 1) + ' / ' + slides.length;
+}
+</script>
+@endpush

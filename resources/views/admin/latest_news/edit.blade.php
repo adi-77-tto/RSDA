@@ -21,13 +21,37 @@
                             @enderror
                         </div>
                         <div class="col-md-12">
-                            <label for="img" class="form-label">Image</label>
-                            <input type="file" name="image" class="form-control" id="img">
-                            <span class="text-info">Image Dimension Must be (725 X 375) and maximum size 300 kb.</span>
+                            <label class="form-label">Current Images</label>
+                            <div class="d-flex flex-wrap gap-2 mb-2">
+                                @if(isset($images) && $images->count())
+                                    @foreach($images as $img)
+                                    <div class="position-relative" style="display:inline-block">
+                                        <img src="{{ asset('images/news/'.$img->image) }}" style="width:90px;height:70px;object-fit:cover;border:2px solid {{ $img->is_cover ? '#0d6efd' : '#dee2e6' }}" alt="">
+                                        @if($img->is_cover)<span class="badge bg-primary" style="position:absolute;top:2px;left:2px;font-size:9px">Cover</span>@endif
+                                        <a href="{{ route('item.image.delete', $img->id) }}" onclick="return confirm('Delete this image?')" class="btn btn-danger btn-sm" style="position:absolute;top:2px;right:2px;padding:1px 5px;font-size:10px"><i class='bx bx-x'></i></a>
+                                    </div>
+                                    @endforeach
+                                @elseif($news->image)
+                                    <img src="{{ asset('images/news/'.$news->image) }}" style="width:90px;height:70px;object-fit:cover" alt="">
+                                @else
+                                    <span class="text-muted">No images yet.</span>
+                                @endif
+                            </div>
                         </div>
                         <div class="col-md-12">
-                            <label for="img" class="form-label">Old Image:</label>
-                            <img src="{{ asset('images/news/'.$news->image) }}" alt="" width="100">
+                            <label class="form-label">Add More Images</label>
+                            <div id="imageInputs">
+                                <div class="image-input-row mb-2">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <input type="file" name="images[]" class="form-control img-file-input" accept="image/*" style="max-width:320px;">
+                                        <button type="button" class="btn btn-sm btn-outline-danger remove-img-row" style="display:none;">✕ Remove</button>
+                                        <span class="cover-badge badge bg-primary" style="font-size:10px;">1st new</span>
+                                    </div>
+                                    <div class="img-thumb mt-1"></div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-sm btn-outline-success mt-1" id="addImageBtn">+ Add Another Image</button>
+                            <small class="text-muted d-block mt-1">New images will be appended. If no images exist yet, the <strong>first one</strong> becomes the cover.</small>
                         </div>
                         <div class="col-md-12">
                             <label for="description" class="form-label">Description</label>
@@ -42,6 +66,56 @@
                             <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
                     </form>
+                    <script>
+                    (function(){
+                        var container = document.getElementById('imageInputs');
+                        var addBtn    = document.getElementById('addImageBtn');
+                        function updateUI() {
+                            container.querySelectorAll('.image-input-row').forEach(function(row, idx){
+                                var removeBtn  = row.querySelector('.remove-img-row');
+                                var coverBadge = row.querySelector('.cover-badge');
+                                var img        = row.querySelector('.img-thumb img');
+                                removeBtn.style.display  = idx === 0 ? 'none' : '';
+                                coverBadge.style.display = idx === 0 ? '' : 'none';
+                                if (img) img.style.borderColor = idx === 0 ? '#0d6efd' : '#dee2e6';
+                            });
+                        }
+                        container.addEventListener('change', function(e){
+                            if (!e.target.classList.contains('img-file-input')) return;
+                            var row   = e.target.closest('.image-input-row');
+                            var thumb = row.querySelector('.img-thumb');
+                            var file  = e.target.files[0];
+                            if (file) {
+                                var reader = new FileReader();
+                                reader.onload = function(ev){
+                                    thumb.innerHTML = '<img src="'+ev.target.result+'" style="width:90px;height:70px;object-fit:cover;border:2px solid #dee2e6;border-radius:4px;">';
+                                    updateUI();
+                                };
+                                reader.readAsDataURL(file);
+                            } else {
+                                thumb.innerHTML = '';
+                            }
+                        });
+                        container.addEventListener('click', function(e){
+                            if (e.target.closest('.remove-img-row')){
+                                e.target.closest('.image-input-row').remove();
+                                updateUI();
+                            }
+                        });
+                        addBtn.addEventListener('click', function(){
+                            var newRow = document.createElement('div');
+                            newRow.className = 'image-input-row mb-2';
+                            newRow.innerHTML = '<div class="d-flex align-items-center gap-2">'
+                                +'<input type="file" name="images[]" class="form-control img-file-input" accept="image/*" style="max-width:320px;">'
+                                +'<button type="button" class="btn btn-sm btn-outline-danger remove-img-row">✕ Remove</button>'
+                                +'<span class="cover-badge badge bg-primary" style="font-size:10px;display:none;">1st new</span>'
+                                +'</div>'
+                                +'<div class="img-thumb mt-1"></div>';
+                            container.appendChild(newRow);
+                            updateUI();
+                        });
+                    })();
+                    </script>
                 </div>
             </div>
         </div>
