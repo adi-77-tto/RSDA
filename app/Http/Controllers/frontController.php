@@ -33,7 +33,7 @@ class frontController extends Controller
             'updated_at'  => now(),
         ]);
 
-        return redirect('/')->with('volunteer_success', 'Thank you for your interest! We will contact you soon.');
+        return redirect()->route('volunterr.opportunities')->with('volunteer_success', 'Thank you for your interest! We will contact you soon.');
     }
 
     // vision and mission
