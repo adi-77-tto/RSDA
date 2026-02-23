@@ -117,18 +117,6 @@
 				</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="fadeIn animated bx bx-bell"></i>
-						</div>
-						<div class="menu-title">Subscribe</div>
-					</a>
-					<ul>
-						<li>
-                            <a href="{{ route('subscribe.all') }}"><i class="bx bx-right-arrow-alt"></i>All Subscribe</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-donate-heart"></i>
 						</div>
 						<div class="menu-title">Donate Now</div>
@@ -145,7 +133,8 @@
 						</li>
 					</ul>
 				</li>
-				<li>
+				{{-- Key Focus Area disabled --}}
+				{{-- <li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-target-lock"></i>
 						</div>
@@ -159,7 +148,7 @@
 							<a href="{{ route('admin.focus_areas.index') }}"><i class="bx bx-right-arrow-alt"></i>All Focus Areas</a>
 						</li>
 					</ul>
-				</li>
+				</li> --}}
 				{{-- <li>
 					<a href="{{ route('logo.create') }}">
 						<div class="parent-icon"><i class='bx bx-cookie'></i>
@@ -316,10 +305,7 @@
 					</a>
 					<ul>
 						<li>
-                            <a href="{{ route('volunteers.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Opportunity</a>
-						</li>
-						<li>
-                            <a href="{{ route('volunteers.index') }}"><i class="bx bx-right-arrow-alt"></i>All Opportunities</a>
+                            <a href="{{ route('volunteers.index') }}"><i class="bx bx-right-arrow-alt"></i>All Volunteers</a>
 						</li>
 					</ul>
 				</li>

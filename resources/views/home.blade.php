@@ -436,36 +436,80 @@ Rural Society Development Association
 {{-- End of Success Stories --}}
 
 {{-- Become a Volunteer --}}
-<div class="site-section" style="background: #ffffff; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;">
-    <div class="container scroll-reveal">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-md-5 mb-4 mb-md-0 d-flex justify-content-center">
-                <div class="volunteer-img-wrap">
-                    <img src="{{ asset('images/volunteer.jpg') }}" alt="Volunteer" class="volunteer-img rounded shadow">
-                </div>
+@if(session('volunteer_success'))
+<div class="container mt-3">
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('volunteer_success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+</div>
+@endif
+<div style="background: #fff; padding: 60px 0; border-top: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0;">
+    <div class="container">
+        <div class="row align-items-center justify-content-center g-5">
+
+            {{-- Image --}}
+            <div class="col-md-5 d-flex justify-content-center">
+                <img src="{{ asset('images/volunteer.jpg') }}"
+                     alt="Volunteer"
+                     class="rounded shadow"
+                     style="width: 100%; max-width: 480px; height: 380px; object-fit: cover;">
             </div>
 
-            <div class="col-md-6 pl-md-4">
-                <div class="volunteer-form-white">
-                    <span style="color: #f7ca44; text-transform: uppercase; letter-spacing: .15em; font-size: 13px; font-weight: 700;">Join Our Team</span>
-                    <h2 style="color: #111; font-size: 2rem; font-weight: 300; margin: 12px 0 24px;">Be A Volunteer Today</h2>
-                    <form action="{{ route('user.subscribe') }}" method="post">
-                        @csrf
-                        <div class="form-group">
-                            <input type="text" class="form-control py-2" name="name" placeholder="Enter your name" required style="border: 1px solid #ddd; border-radius: 4px;">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control py-2" name="email" placeholder="Enter your email" required style="border: 1px solid #ddd; border-radius: 4px;">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" cols="30" rows="3" class="form-control py-2" placeholder="Write your message" style="border: 1px solid #ddd; border-radius: 4px;"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btn btn-primary px-5 py-2" value="Send Message">
-                        </div>
-                    </form>
-                </div>
+            {{-- Form --}}
+            <div class="col-md-5">
+                <h2 style="color: #111; font-size: 2rem; font-weight: 400; margin-bottom: 24px;">Be A Volunteer Today</h2>
+                <form action="{{ route('volunteer.apply') }}" method="POST">
+                    @csrf
+                    {{-- Name --}}
+                    <div class="mb-3">
+                        <input type="text"
+                               class="form-control py-2 @error('name') is-invalid @enderror"
+                               name="name"
+                               placeholder="Enter your name"
+                               value="{{ old('name') }}"
+                               required
+                               style="border: 1px solid #ccc; border-radius: 4px;">
+                        @error('name')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    {{-- Phone --}}
+                    <div class="mb-3">
+                        <input type="text"
+                               class="form-control py-2 @error('phone') is-invalid @enderror"
+                               name="phone"
+                               placeholder="Enter your phone number"
+                               value="{{ old('phone') }}"
+                               required
+                               style="border: 1px solid #ccc; border-radius: 4px;">
+                        @error('phone')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    {{-- Email (optional) --}}
+                    <div class="mb-3">
+                        <input type="email"
+                               class="form-control py-2 @error('email') is-invalid @enderror"
+                               name="email"
+                               placeholder="Enter your email (optional)"
+                               value="{{ old('email') }}"
+                               style="border: 1px solid #ccc; border-radius: 4px;">
+                        @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    {{-- Message --}}
+                    <div class="mb-3">
+                        <textarea name="message"
+                                  rows="4"
+                                  class="form-control py-2 @error('message') is-invalid @enderror"
+                                  placeholder="Write your message"
+                                  style="border: 1px solid #ccc; border-radius: 4px;">{{ old('message') }}</textarea>
+                        @error('message')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                    </div>
+                    <button type="submit"
+                            class="btn px-5 py-2"
+                            style="background: #fff; border: 1px solid #333; color: #333; letter-spacing: .1em; font-size: 13px; font-weight: 600;">
+                        SEND
+                    </button>
+                </form>
             </div>
+
         </div>
     </div>
 </div>

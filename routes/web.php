@@ -28,7 +28,7 @@ Route::get('/', function () {
     return view('home', compact('slider', 'project', 'news', 'gallery', 'application', 'programs', 'stories', 'mission_vision', 'impact', 'people_metric'));
 });
 
-Route::post('user/subscribe', [frontController::class, 'subscribe'])->name('user.subscribe');
+Route::post('volunteer/apply', [frontController::class, 'volunteerApply'])->name('volunteer.apply');
 
 // About us
 Route::get('about/us', [frontController::class, 'about_us'])->name('about.us');
@@ -41,7 +41,7 @@ Route::get('partner/donor', [frontController::class, 'partner'])->name('partner.
 Route::get('about/impact', [frontController::class, 'impact'])->name('about.impact');
 
 // Programs
-Route::get('key/focus', [frontController::class, 'key_focus'])->name('key.focus.area');
+// Route::get('key/focus', [frontController::class, 'key_focus'])->name('key.focus.area'); // disabled
 Route::get('project/archieve', [frontController::class, 'proj_archieve'])->name('project.archieve');
 Route::get('ongoing/project', [frontController::class, 'ongoing_project'])->name('ongoing.project');
 Route::get('ongoing/project/view/{id}', [frontController::class, 'project_view'])->name('ongoing.project.view');

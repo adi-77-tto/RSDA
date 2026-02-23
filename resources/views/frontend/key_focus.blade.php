@@ -1,100 +1,6 @@
 @extends('main')
 
 @section('content')
-<style>
-    .focus-area-kicker{
-        letter-spacing: 0.12em;
-        font-size: 12px;
-        font-weight: 700;
-        color: var(--bs-secondary-color);
-    }
-    .focus-area-card{
-        background: #fff;
-        border: 1px solid var(--bs-border-color);
-        border-radius: 16px;
-        padding: 24px;
-        height: 100%;
-        transition: transform 180ms ease, box-shadow 180ms ease;
-        will-change: transform;
-        position: relative;
-        overflow: hidden;
-    }
-    .focus-area-card--image{
-        background-size: cover;
-        background-position: center;
-        border-color: transparent;
-        padding: 28px;
-    }
-    .focus-area-card--image::before{
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(180deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.28) 55%, rgba(0,0,0,0.65) 100%);
-        pointer-events: none;
-    }
-    .focus-area-card-content{
-        position: relative;
-        z-index: 1;
-    }
-    .focus-area-card:hover{
-        transform: translateY(-4px);
-        box-shadow: 0 .75rem 2rem rgba(var(--bs-body-color-rgb), .10);
-    }
-    .focus-area-icon{
-        width: 56px;
-        height: 56px;
-        border-radius: 14px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 14px;
-        overflow: hidden;
-    }
-    .focus-area-icon img{
-        width: 28px;
-        height: 28px;
-        object-fit: contain;
-        display: block;
-    }
-    .focus-area-icon i{
-        font-size: 22px;
-    }
-    .focus-area-card-title{
-        font-size: 18px;
-        font-weight: 800;
-        margin-bottom: 8px;
-    }
-    .focus-area-card-text{
-        color: var(--bs-secondary-color);
-        margin-bottom: 0;
-    }
-    .focus-area-card--image .focus-area-card-title,
-    .focus-area-card--image .focus-area-card-text{
-        color: rgba(255,255,255,.92);
-        text-shadow: 0 2px 10px rgba(0,0,0,.45);
-    }
-    .focus-area-card--image .focus-area-card-text{
-        color: rgba(255,255,255,.80);
-    }
-    .focus-area-card--image .focus-area-card-content{
-        background: rgba(0,0,0,.22);
-        border-radius: 14px;
-        padding: 14px;
-    }
-    .focus-area-card--image .focus-area-icon{
-        background: rgba(255,255,255,.14) !important;
-        color: rgba(255,255,255,.95) !important;
-    }
-    @media (prefers-reduced-motion: reduce){
-        .focus-area-card{
-            transition: none;
-        }
-        .focus-area-card:hover{
-            transform: none;
-            box-shadow: none;
-        }
-    }
-</style>
 
 <!-- ======= Breadcrumbs ======= -->
 <section class="breadcrumbs">
@@ -108,66 +14,57 @@
 </section>
 <!-- End Breadcrumbs -->
 
-<section class="bg-light p-0">
-    <div class="container bg-white py-5" data-aos="fade-up">
-        <div class="text-center mb-4">
-            <div class="focus-area-kicker">WHAT WE DO</div>
-            <h2 class="fw-bold mb-2">Our Focus Areas</h2>
-            <p class="text-secondary mx-auto mb-0" style="max-width: 720px;">
-                The Focus Area section provides a brief overview of the key areas our projects will prioritize—such as infrastructure support for women, community empowerment, livelihood development, and social protection.
-            </p>
-        </div>
+@php
+    $placeholder = asset('img/testimonial.jpg');
+    $areas = $focus_areas ?? collect();
+@endphp
 
-        @php
-            $iconBadgeClasses = [
-                'bg-primary bg-opacity-10 text-primary',
-                'bg-danger bg-opacity-10 text-danger',
-                'bg-warning bg-opacity-10 text-warning',
-                'bg-info bg-opacity-10 text-info',
-                'bg-success bg-opacity-10 text-success',
-                'bg-secondary bg-opacity-10 text-secondary',
-            ];
-        @endphp
+@forelse($areas as $item)
+    @php
+        $imageUrl = null;
+        if (!empty($item->image_path)) {
+            $imageUrl = asset('storage/' . $item->image_path);
+        }
+        $isEven = $loop->index % 2 === 0;
+        $bg      = $isEven ? '#fff' : '#f8f9fa';
+    @endphp
 
-        <div class="row g-4">
-            @foreach(($focus_areas ?? collect()) as $item)
-                @php
-                    $badgeClass = $iconBadgeClasses[$loop->index % count($iconBadgeClasses)];
-                    $iconClass = !empty($item->icon_class) ? $item->icon_class : 'fa-solid fa-bullseye';
+    <div class="site-section" style="background:{{ $bg }};">
+        <div class="container">
+            <div class="row align-items-center {{ $isEven ? '' : 'flex-md-row-reverse' }}">
 
-                    $iconUrl = null;
-                    if (!empty($item->icon_path)) {
-                        $iconUrl = asset('storage/' . $item->icon_path);
-                    }
-
-                    $imageUrl = null;
-                    if (!empty($item->image_path)) {
-                        $imageUrl = asset('storage/' . $item->image_path);
-                    } elseif (!empty($item->default_image)) {
-                        $imageUrl = asset($item->default_image);
-                    }
-
-                    $cardClass = !empty($imageUrl) ? 'focus-area-card--image' : '';
-                    $cardStyle = !empty($imageUrl) ? "background-image: url('{$imageUrl}');" : '';
-                @endphp
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="focus-area-card {{ $cardClass }}" style="{{ $cardStyle }}">
-                        <div class="focus-area-card-content">
-                            <div class="focus-area-icon {{ $badgeClass }}">
-                                @if (!empty($iconUrl))
-                                    <img src="{{ $iconUrl }}" alt="{{ $item->title }} icon">
-                                @else
-                                    <i class="{{ $iconClass }}"></i>
-                                @endif
-                            </div>
-                            <div class="focus-area-card-title">{{ $item->title }}</div>
-                            <p class="focus-area-card-text" style="text-align: justify;">{{ $item->description }}</p>
-                        </div>
-                    </div>
+                {{-- Text column --}}
+                <div class="col-md-6 {{ $isEven ? 'pr-md-5' : 'pl-md-5' }}" data-aos="{{ $isEven ? 'fade-right' : 'fade-left' }}">
+                    <span style="color:#f7ca44; font-size:.85rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase;">
+                        What We Do
+                    </span>
+                    <h2 class="display-5 mb-3 mt-1" style="font-weight:700;">
+                        {{ $item->title }}
+                    </h2>
+                    <div style="width:60px; height:4px; background:#f7ca44; border-radius:2px; margin-bottom:1.2rem;"></div>
+                    <p class="text-secondary" style="text-align:justify; line-height:1.9;">
+                        {{ $item->description ?? '' }}
+                    </p>
                 </div>
-            @endforeach
+
+                {{-- Image column --}}
+                <div class="col-md-6 mt-4 mt-md-0" data-aos="{{ $isEven ? 'fade-left' : 'fade-right' }}">
+                    <img src="{{ $imageUrl ?? $placeholder }}"
+                         alt="{{ $item->title }}"
+                         class="img-fluid rounded shadow"
+                         style="width:100%; max-height:380px; object-fit:cover;">
+                </div>
+
+            </div>
         </div>
     </div>
-</section>
+
+@empty
+    <div class="site-section" style="background:#fff;">
+        <div class="container text-center py-5">
+            <p class="text-secondary fs-5">No focus areas available at the moment.</p>
+        </div>
+    </div>
+@endforelse
 
 @endsection

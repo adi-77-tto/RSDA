@@ -1,5 +1,5 @@
 {{-- Footer started --}}
-<div class="bg-dark" style="border-top:5px solid #a1ae1c;">
+<div class="bg-dark" style="border-top:5px solid #f7ca44;">
     <div class="container py-5">
         <div class="row" id="footer_link_wrapper">
             {{-- logo and short description --}}
@@ -27,7 +27,6 @@
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">What we do</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
-                            <li class="py-1"><a class="dropdown-item text-white" href="{{ route('key.focus.area') }}">Key Focus Area</a></li>
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('project.archieve') }}">Project Archieve</a></li>
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('programs.all') }}">Programs</a></li>
@@ -46,12 +45,20 @@
                     <div class="col-md-3 py-4">
                         <h5 class="pb-3">CONTACT</h5>
                         <div class="d-flex py-2" style="font-size: 14px;">
-                            <div><i class="fa-solid fa-location-dot mx-2"></i></div>
-                            <div>R.K Road Khalilganj Bazar, Kurigram</div>
+                            <div><i class="fa-solid fa-location-dot mx-2 mt-1"></i></div>
+                            <div>South Tapur Char, Tapur Char<br>Rowmari Upazila, Kurigram District</div>
                         </div>
                         <div class="d-flex py-2" style="font-size: 14px;">
-                            <div><i class="fa-solid fa-phone mx-2"></i></div>
-                            <div>01719-691409 <br>  01324-194889 </div>
+                            <div><i class="fa-solid fa-user mx-2 mt-1"></i></div>
+                            <div>Executive Director:<br>Md. Saifur Rahman</div>
+                        </div>
+                        <div class="d-flex py-2" style="font-size: 14px;">
+                            <div><i class="fa-solid fa-phone mx-2 mt-1"></i></div>
+                            <div>01714613703<br>01732973766<br>01948329261</div>
+                        </div>
+                        <div class="d-flex py-2" style="font-size: 14px;">
+                            <div><i class="fa-solid fa-envelope mx-2 mt-1"></i></div>
+                            <div>rsda_kurigram@yahoo.com</div>
                         </div>
                         <div>
                             <ul class="d-flex">

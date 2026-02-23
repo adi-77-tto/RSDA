@@ -25,7 +25,6 @@ use App\Http\Controllers\Admin\projectArchiveController;
 use App\Http\Controllers\Admin\projectController;
 use App\Http\Controllers\Admin\sliderController;
 use App\Http\Controllers\Admin\StoryController;
-use App\Http\Controllers\Admin\subscribeController;
 use App\Http\Controllers\Admin\StrategicPlanController;
 use App\Http\Controllers\Admin\TeamMemberController;
 use App\Http\Controllers\Admin\VolunteerController;
@@ -83,17 +82,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/gallery/edit/{id}', [galleryController::class, 'edit'])->name('gallery.edit');
     Route::post('/gallery/update/{id}', [galleryController::class, 'update'])->name('gallery.update');
 
-    // Subscribe
-    Route::get('admin/subscribe', [subscribeController::class, 'index'])->name('subscribe.all');
-    Route::get('admin/subscribe/delete/{id}', [subscribeController::class, 'destroy'])->name('subscribe.delete');
+    // Subscribe routes removed
 
-    // Key Focus Area (Dynamic)
-    Route::get('focus-areas/add', [FocusAreaController::class, 'create'])->name('admin.focus_areas.add');
-    Route::post('focus-areas/store', [FocusAreaController::class, 'store'])->name('admin.focus_areas.store');
-    Route::get('focus-areas/index', [FocusAreaController::class, 'index'])->name('admin.focus_areas.index');
-    Route::get('focus-areas/edit/{id}', [FocusAreaController::class, 'edit'])->name('admin.focus_areas.edit');
-    Route::post('focus-areas/update/{id}', [FocusAreaController::class, 'update'])->name('admin.focus_areas.update');
-    Route::get('focus-areas/delete/{id}', [FocusAreaController::class, 'destroy'])->name('admin.focus_areas.delete');
+    // Key Focus Area (Dynamic) — disabled
+    // Route::get('focus-areas/add', [FocusAreaController::class, 'create'])->name('admin.focus_areas.add');
+    // Route::post('focus-areas/store', [FocusAreaController::class, 'store'])->name('admin.focus_areas.store');
+    // Route::get('focus-areas/index', [FocusAreaController::class, 'index'])->name('admin.focus_areas.index');
+    // Route::get('focus-areas/edit/{id}', [FocusAreaController::class, 'edit'])->name('admin.focus_areas.edit');
+    // Route::post('focus-areas/update/{id}', [FocusAreaController::class, 'update'])->name('admin.focus_areas.update');
+    // Route::get('focus-areas/delete/{id}', [FocusAreaController::class, 'destroy'])->name('admin.focus_areas.delete');
 
     // Message
     Route::get('message/index', [messageController::class, 'index'])->name('message.index');
@@ -237,12 +234,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('faq/update/{id}', [FaqController::class, 'update'])->name('faq.update');
 
     // __ Volunteers __//
-    Route::get('volunteers/add', [VolunteerController::class, 'add'])->name('volunteers.add');
-    Route::post('volunteers/store', [VolunteerController::class, 'store'])->name('volunteers.store');
     Route::get('volunteers/index', [VolunteerController::class, 'index'])->name('volunteers.index');
+    Route::get('volunteers/view/{id}', [VolunteerController::class, 'view'])->name('volunteers.view');
     Route::get('volunteers/delete/{id}', [VolunteerController::class, 'destroy'])->name('volunteers.delete');
-    Route::get('volunteers/edit/{id}', [VolunteerController::class, 'edit'])->name('volunteers.edit');
-    Route::post('volunteers/update/{id}', [VolunteerController::class, 'update'])->name('volunteers.update');
+
+    // __ Volunteer Applications routes removed (using volunteers table directly) __//
 
     // __ Payment Methods __//
     Route::get('payment-methods/add', [PaymentMethodController::class, 'add'])->name('admin.payment_methods.add');

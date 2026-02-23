@@ -46,7 +46,7 @@ body > nav.ftco_navbar {
 :root{
   --rsda-primary: #132c17;
   --rsda-secondary: #4d6528;
-  --rsda-accent: #a1ae1c;
+  --rsda-accent: #f7ca44;
   --rsda-highlight: #eddb80;
 }
 /* body {
@@ -194,18 +194,13 @@ section {
 # Breadcrumbs
 --------------------------------------------------------------*/
 .breadcrumbs {
-  padding: 15px 0;
-  background: #fef9e7;
-  min-height: 40px;
-  color: #3d3d3d;
-  border-bottom: 1px solid #e8e0c0;
-  margin-top: 0;
+  display: none;
 }
 
 .breadcrumbs h2 {
-  font-size: 28px;
-  font-weight: 500;
-  color: #2b2b2b;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #111;
 }
 
 .breadcrumbs ol {
@@ -222,7 +217,7 @@ section {
 }
 
 .breadcrumbs ol a:hover {
-  color: #a1ae1c;
+  color: #f7ca44;
   transition: 0.3s;
 }
 
@@ -233,7 +228,7 @@ section {
 .breadcrumbs ol li+li::before {
   display: inline-block;
   padding-right: 10px;
-  color: #a1ae1c;
+  color: #f7ca44;
   content: "/";
 }
 

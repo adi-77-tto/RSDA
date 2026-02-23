@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-12 mx-auto">
-        <h6 class="mb-0 text-uppercase">Volunteer Sign-ups</h6>
+        <h6 class="mb-0 text-uppercase">Volunteer Applications</h6>
         <hr/>
         <div class="card">
             <div class="card-body">
@@ -18,7 +18,7 @@
                                 <th>Name</th>
                                 <th>Phone</th>
                                 <th>Email</th>
-                                <th>Description</th>
+                                <th>Message</th>
                                 <th>Date</th>
                                 <th class="text-center">Action</th>
                             </tr>
@@ -30,24 +30,24 @@
                                 <td class="align-middle">{{ $item->name }}</td>
                                 <td class="align-middle">{{ $item->phone }}</td>
                                 <td class="align-middle">{{ $item->email ?? '—' }}</td>
-                                <td class="align-middle" style="max-width:240px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
-                                    {{ $item->description ?? '—' }}
+                                <td class="align-middle" style="max-width:250px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                                    {{ $item->message ?? '—' }}
                                 </td>
                                 <td class="align-middle">{{ \Carbon\Carbon::parse($item->created_at)->format('d M Y') }}</td>
                                 <td class="text-center align-middle">
-                                    <a href="{{ route('volunteers.view', $item->id) }}" class="btn btn-sm btn-info text-white">
+                                    <a href="{{ route('volunteer.applications.view', $item->id) }}" class="btn btn-sm btn-info text-white">
                                         <i class="bx bx-show"></i>
                                     </a>
-                                    <a href="{{ route('volunteers.delete', $item->id) }}"
+                                    <a href="{{ route('volunteer.applications.delete', $item->id) }}"
                                        class="btn btn-sm btn-danger text-white"
-                                       onclick="return confirm('Delete this record?')">
+                                       onclick="return confirm('Delete this application?')">
                                         <i class="bx bx-trash-alt"></i>
                                     </a>
                                 </td>
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="7" class="text-center text-muted py-4">No volunteer sign-ups yet.</td>
+                                <td colspan="7" class="text-center text-muted py-4">No volunteer applications yet.</td>
                             </tr>
                             @endforelse
                         </tbody>

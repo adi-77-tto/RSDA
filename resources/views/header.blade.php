@@ -23,7 +23,7 @@
                     <div class="dropdown-menu" aria-labelledby="aboutDropdown">
                         <a class="dropdown-item" href="{{ route('about.us') }}">About RSDA</a>
                         <a class="dropdown-item" href="{{ route('vision.mission') }}">Mission, Vision & Values</a>
-                        <a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a>
+                        {{-- <a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a> --}}
                         <a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a>
                         <a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a>
                         <a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a>
@@ -49,8 +49,8 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="programsDropdown">
                         <a class="dropdown-item" href="{{ route('programs.all') }}">Featured Programs</a>
-                        <a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a>
-                        <a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Programs</a>
+                        {{-- <a class="dropdown-item" href="{{ route('key.focus.area') }}">Key Focus Area</a> --}}
+                        <a class="dropdown-item" href="{{ route('ongoing.project') }}">Ongoing Projects</a>
                         <a class="dropdown-item" href="{{ route('project.archieve') }}">Project Archieve</a>
                         <a class="dropdown-item" href="{{ route('success.stories') }}">Success Stories</a>
                     </div>

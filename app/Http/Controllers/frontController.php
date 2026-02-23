@@ -15,20 +15,25 @@ class frontController extends Controller
         return view('frontend.about_us', compact('about_us', 'team', 'committee'));
     }
 
-    // Subscribe
-    public function subscribe(Request $request){
-        $validatedData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|unique:subscribe|max:255',
+    // Volunteer Apply (homepage form)
+    public function volunteerApply(Request $request){
+        $request->validate([
+            'name'        => 'required|max:255',
+            'phone'       => 'required|max:30',
+            'email'       => 'nullable|email|max:255',
+            'message'     => 'nullable|string|max:2000',
         ]);
 
-        $subscribe = array([
-            'name' => $request->name,
-            'email' => $request->email
+        DB::table('volunteers')->insert([
+            'name'        => $request->name,
+            'phone'       => $request->phone,
+            'email'       => $request->email,
+            'description' => $request->message,
+            'created_at'  => now(),
+            'updated_at'  => now(),
         ]);
 
-        DB::table('subscribe')->insert($subscribe);
-        return redirect()->back()->with('success','Thanks for Subscribed us!!!!');
+        return redirect('/')->with('volunteer_success', 'Thank you for your interest! We will contact you soon.');
     }
 
     // vision and mission
