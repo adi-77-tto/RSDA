@@ -23,38 +23,26 @@
       </div>
 
       @if($paymentMethods->count() > 0)
-        <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-3">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 gx-3 justify-content-center" style="row-gap:40px;">
           @foreach($paymentMethods as $method)
             <div class="col">
-              <div class="card border-0 shadow-sm h-100 text-center py-3 px-2">
-                <div class="card-body d-flex flex-column align-items-center justify-content-center">
+              <div class="card border-0 shadow-sm h-100 text-center overflow-hidden" style="border-radius:14px;">
+                {{-- Image area fills top of card --}}
+                <div class="d-flex align-items-center justify-content-center" style="height:160px; background:#fff; padding:18px;">
                   @if($method->icon_image)
-                    <img src="{{ asset('storage/'.$method->icon_image) }}" alt="{{ $method->type }}" style="max-height:55px; max-width:80%; object-fit:contain; margin-bottom:12px;">
+                    <img src="{{ asset('storage/'.$method->icon_image) }}" alt="{{ ucfirst($method->type) }}"
+                         style="width:100%; height:100%; object-fit:contain;">
                   @elseif($method->type == 'bank')
-                    <i class="fa-solid fa-building-columns" style="font-size:48px; color:#555; margin-bottom:12px;"></i>
-                  @elseif(file_exists(public_path('img/'.$method->type.'.png')))
-                    <img src="{{ asset('img/'.$method->type.'.png') }}" alt="{{ $method->type }}" style="max-height:55px; max-width:80%; object-fit:contain; margin-bottom:12px;">
+                    <i class="fa-solid fa-building-columns" style="font-size:80px; color:#555;"></i>
+                  @elseif($method->type == 'visa')
+                    <i class="fa-solid fa-credit-card" style="font-size:80px; color:#555;"></i>
                   @else
-                    <i class="fa-solid fa-money-bill-wave" style="font-size:48px; color:#555; margin-bottom:12px;"></i>
+                    <i class="fa-solid fa-mobile-screen-button" style="font-size:80px; color:#555;"></i>
                   @endif
-
-                  <p class="mb-0 text-muted" style="font-size:11px; text-transform:uppercase; letter-spacing:.5px;">{{ ucfirst($method->type) }}</p>
-                  <p class="mb-1 fw-bold" style="font-size:13px;">{{ $method->account_name }}</p>
-                  <p class="mb-0 text-secondary" style="font-size:13px; font-weight:600;">{{ $method->account_number }}</p>
-
-                  @if($method->type == 'bank' && $method->bank_details)
-                    <ul class="list-unstyled text-start mt-2 mb-0" style="font-size:11px;">
-                      @if(isset($method->bank_details['bank_name']))
-                        <li><i class="fa fa-landmark fa-xs me-1 text-muted"></i> {{ $method->bank_details['bank_name'] }}</li>
-                      @endif
-                      @if(isset($method->bank_details['branch_name']))
-                        <li><i class="fa fa-map-marker-alt fa-xs me-1 text-muted"></i> {{ $method->bank_details['branch_name'] }}</li>
-                      @endif
-                      @if(isset($method->bank_details['routing_number']))
-                        <li><i class="fa fa-hashtag fa-xs me-1 text-muted"></i> Routing: {{ $method->bank_details['routing_number'] }}</li>
-                      @endif
-                    </ul>
-                  @endif
+                </div>
+                {{-- Number at bottom --}}
+                <div style="background:#f8f9fa; padding:14px 10px; border-top:1px solid #eee;">
+                  <p class="mb-0 fw-bold" style="font-size:18px; letter-spacing:.5px; color:#222;">{{ $method->account_number }}</p>
                 </div>
               </div>
             </div>
@@ -112,10 +100,12 @@
                     <label class="form-label fw-semibold" style="font-size:13px;">Payment Method Used <span class="text-danger">*</span></label>
                     <select name="payment_method_id" class="form-select @error('payment_method_id') is-invalid @enderror" required>
                       <option value="">-- Select Payment Method --</option>
-                      <option value="bkash" {{ old('payment_method_id') == 'bkash' ? 'selected' : '' }}>Bkash</option>
+                      <option value="bkash" {{ old('payment_method_id') == 'bkash' ? 'selected' : '' }}>bKash</option>
                       <option value="nagad" {{ old('payment_method_id') == 'nagad' ? 'selected' : '' }}>Nagad</option>
+                      <option value="rocket" {{ old('payment_method_id') == 'rocket' ? 'selected' : '' }}>Rocket</option>
                       <option value="upay" {{ old('payment_method_id') == 'upay' ? 'selected' : '' }}>Upay</option>
-                      <option value="card" {{ old('payment_method_id') == 'card' ? 'selected' : '' }}>Card</option>
+                      <option value="visa" {{ old('payment_method_id') == 'visa' ? 'selected' : '' }}>Visa/Card</option>
+                      <option value="bank" {{ old('payment_method_id') == 'bank' ? 'selected' : '' }}>Bank Account</option>
                     </select>
                     @error('payment_method_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
                   </div>

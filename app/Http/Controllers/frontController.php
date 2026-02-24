@@ -264,7 +264,7 @@ class frontController extends Controller
             'donor_phone' => 'required|string|max:20',
             'transaction_id' => 'required|string|max:255',
             'amount' => 'required|numeric|min:1',
-            'payment_method_id' => 'required|in:bkash,nagad,upay,card',
+            'payment_method_id' => 'required|in:bkash,nagad,rocket,upay,visa,bank',
         ]);
 
         \App\Models\Donation::create([

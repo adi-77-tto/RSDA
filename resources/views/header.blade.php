@@ -16,7 +16,7 @@
                 </li>
 
                 {{-- About us --}}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ Request::is('about/*') || Request::is('mission/*') || Request::is('origin/*') || Request::is('cheif/*') || Request::is('partner/*') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="aboutDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         About us
                     </a>
@@ -32,7 +32,7 @@
                 </li>
 
                 {{-- Members --}}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ Request::is('about/us/team/*') || Request::is('committee*') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="membersDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         Members
                     </a>
@@ -43,7 +43,7 @@
                 </li>
 
                 {{-- Programs --}}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ Request::is('programs*') || Request::is('project/*') || Request::is('ongoing/*') || Request::is('success/*') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="programsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         Programs
                     </a>
@@ -57,7 +57,7 @@
                 </li>
 
                 {{-- Get Involved --}}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ Request::is('volunteer/*') || Request::is('donate*') || Request::is('get_invoked/*') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="involvedDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         Get Involved
                     </a>
@@ -71,7 +71,7 @@
                 </li>
 
                 {{-- News & Events --}}
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown {{ Request::is('latest/*') || Request::is('youtube/*') || Request::is('events/*') || Request::is('strategic/*') || Request::is('policy/*') || Request::is('publication*') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="eventsDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                         News & Events
                     </a>
@@ -86,12 +86,12 @@
                 </li>
 
                 {{-- Gallery --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('gallery/*') ? 'active' : '' }}">
                     <a href="{{ route('photo.all') }}" class="nav-link">Gallery</a>
                 </li>
 
                 {{-- Contact --}}
-                <li class="nav-item">
+                <li class="nav-item {{ Request::is('contact*') ? 'active' : '' }}">
                     <a href="{{ route('contact') }}" class="nav-link">Contact</a>
                 </li>
             </ul>

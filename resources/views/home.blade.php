@@ -78,13 +78,13 @@ Rural Society Development Association
                 <a href="{{ route('vision.mission') }}" style="color: #f7ca44; font-weight: 700;">Learn More &rarr;</a>
             </div>
             <div class="col-md-7 mt-4 mt-md-0">
-                <img src="{{ asset('images/mission.jpg') }}" alt="Our Mission" style="width: 100%; height: 380px; object-fit: cover; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.10);">
+                <img src="{{ isset($mission_vision) && $mission_vision->mission_image ? asset('images/mission_vision/'.$mission_vision->mission_image) : asset('images/mission.jpg') }}" alt="Our Mission" style="width: 100%; height: 380px; object-fit: cover; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.10);">
             </div>
         </div>
         {{-- Vision — image left, text right --}}
         <div class="row align-items-center pt-4">
             <div class="col-md-7 mb-4 mb-md-0">
-                <img src="{{ asset('images/vision.jpg') }}" alt="Our Vision" style="width: 100%; height: 380px; object-fit: cover; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.10);">
+                <img src="{{ isset($mission_vision) && $mission_vision->vision_image ? asset('images/mission_vision/'.$mission_vision->vision_image) : asset('images/vision.jpg') }}" alt="Our Vision" style="width: 100%; height: 380px; object-fit: cover; border-radius: 6px; box-shadow: 0 8px 30px rgba(0,0,0,0.10);">
             </div>
             <div class="col-md-5 pl-md-5">
                 <h3 style="font-size: 1.9rem; font-weight: 700; color: #111; margin: 0 0 18px; line-height: 1.25;">Our Vision</h3>
