@@ -40,18 +40,11 @@
                         </div>
                         <div class="col-md-12">
                             <label class="form-label">Add More Images</label>
-                            <div id="imageInputs">
-                                <div class="image-input-row mb-2">
-                                    <div class="d-flex align-items-center gap-2">
-                                        <input type="file" name="images[]" class="form-control img-file-input" accept="image/*" style="max-width:320px;">
-                                        <button type="button" class="btn btn-sm btn-outline-danger remove-img-row" style="display:none;">✕ Remove</button>
-                                        <span class="cover-badge badge bg-primary" style="font-size:10px;">1st new</span>
-                                    </div>
-                                    <div class="img-thumb mt-1"></div>
-                                </div>
+                            <div class="mb-1">
+                                <input type="file" name="images[]" id="img" multiple accept="image/*" style="display:none">
+                                <button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('img').click()">Choose Files</button>
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-success mt-1" id="addImageBtn">+ Add Another Image</button>
-                            <small class="text-muted d-block mt-1">New images will be appended. If no images exist yet, the <strong>first one</strong> becomes the cover.</small>
+                            <div id="imgPreview" class="d-flex flex-wrap gap-3 mt-3"></div>
                         </div>
                         <div class="col-md-12">
                             <label for="donor" class="form-label">Donor (optional)</label>
@@ -75,52 +68,43 @@
                     </form>
                     <script>
                     (function(){
-                        var container = document.getElementById('imageInputs');
-                        var addBtn    = document.getElementById('addImageBtn');
-                        function updateUI() {
-                            container.querySelectorAll('.image-input-row').forEach(function(row, idx){
-                                var removeBtn  = row.querySelector('.remove-img-row');
-                                var coverBadge = row.querySelector('.cover-badge');
-                                var img        = row.querySelector('.img-thumb img');
-                                removeBtn.style.display  = idx === 0 ? 'none' : '';
-                                coverBadge.style.display = idx === 0 ? '' : 'none';
-                                if (img) img.style.borderColor = idx === 0 ? '#0d6efd' : '#dee2e6';
-                            });
-                        }
-                        container.addEventListener('change', function(e){
-                            if (!e.target.classList.contains('img-file-input')) return;
-                            var row   = e.target.closest('.image-input-row');
-                            var thumb = row.querySelector('.img-thumb');
-                            var file  = e.target.files[0];
-                            if (file) {
+                        var input   = document.getElementById('img');
+                        var preview = document.getElementById('imgPreview');
+                        var fileArr = [];
+                        input.addEventListener('change', function(){
+                            Array.from(this.files).forEach(function(f){ fileArr.push(f); });
+                            this.value = '';
+                            render();
+                        });
+                        function render(){
+                            preview.innerHTML = '';
+                            fileArr.forEach(function(file, i){
                                 var reader = new FileReader();
-                                reader.onload = function(ev){
-                                    thumb.innerHTML = '<img src="'+ev.target.result+'" style="width:90px;height:70px;object-fit:cover;border:2px solid #dee2e6;border-radius:4px;">';
-                                    updateUI();
-                                };
+                                reader.onload = (function(f, idx){
+                                    return function(ev){
+                                        var card = document.createElement('div');
+                                        card.style.cssText = 'position:relative;width:150px;';
+                                        var imgEl = document.createElement('img');
+                                        imgEl.src = ev.target.result;
+                                        imgEl.style.cssText = 'width:150px;height:120px;object-fit:cover;border-radius:4px;border:2px solid '+(idx===0?'#0d6efd':'#ccc')+';display:block;';
+                                        var num = document.createElement('span');
+                                        num.textContent = idx + 1;
+                                        num.style.cssText = 'position:absolute;top:5px;left:5px;background:rgba(0,0,0,0.7);color:#fff;border-radius:3px;padding:1px 6px;font-size:12px;font-weight:bold;';
+                                        var del = document.createElement('button');
+                                        del.type = 'button'; del.innerHTML = '&times;';
+                                        del.style.cssText = 'position:absolute;bottom:25px;left:5px;background:#fff;border:1px solid #aaa;width:19px;height:19px;cursor:pointer;font-size:14px;line-height:1;padding:0;border-radius:2px;';
+                                        del.onclick = (function(n){ return function(){ fileArr.splice(n,1); render(); }; })(idx);
+                                        var nm = document.createElement('div');
+                                        nm.textContent = f.name.length>18 ? f.name.substring(0,15)+'...' : f.name;
+                                        nm.style.cssText = 'font-size:11px;color:#555;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;';
+                                        card.appendChild(imgEl); card.appendChild(num); card.appendChild(del); card.appendChild(nm);
+                                        preview.appendChild(card);
+                                    };
+                                })(file, i);
                                 reader.readAsDataURL(file);
-                            } else {
-                                thumb.innerHTML = '';
-                            }
-                        });
-                        container.addEventListener('click', function(e){
-                            if (e.target.closest('.remove-img-row')){
-                                e.target.closest('.image-input-row').remove();
-                                updateUI();
-                            }
-                        });
-                        addBtn.addEventListener('click', function(){
-                            var newRow = document.createElement('div');
-                            newRow.className = 'image-input-row mb-2';
-                            newRow.innerHTML = '<div class="d-flex align-items-center gap-2">'
-                                +'<input type="file" name="images[]" class="form-control img-file-input" accept="image/*" style="max-width:320px;">'
-                                +'<button type="button" class="btn btn-sm btn-outline-danger remove-img-row">✕ Remove</button>'
-                                +'<span class="cover-badge badge bg-primary" style="font-size:10px;display:none;">1st new</span>'
-                                +'</div>'
-                                +'<div class="img-thumb mt-1"></div>';
-                            container.appendChild(newRow);
-                            updateUI();
-                        });
+                            });
+                            try{ var dt=new DataTransfer(); fileArr.forEach(function(f){dt.items.add(f);}); input.files=dt.files; }catch(e){}
+                        }
                     })();
                     </script>
                 </div>
