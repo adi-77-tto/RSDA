@@ -37,13 +37,9 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header shadow-sm">
 				<div>
-					<img src="{{ asset('images/application/'.application()->main_logo) }}" class="logo-icon" alt="logo icon" style="max-height: 50px;">
+					<img src="{{ asset('images/application/'.application()->main_logo) }}" class="logo-icon" alt="logo icon" style="max-height: 75px; width: auto;">
 				</div>
-				<div>
-					<h4 class="logo-text text-success fw-bold mb-0">RSDA</h4>
-					<small class="text-muted" style="font-size: 10px;">Admin Panel</small>
-				</div>
-				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left text-success'></i>
+				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left' style="color: #ffc107;"></i>
 				</div>
 			</div>
 			<!--navigation-->
@@ -769,8 +765,8 @@
 
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<div class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle" style="width: 40px; height: 40px;">
-								<i class="bx bx-user" style="font-size: 20px;"></i>
+							<div class="d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px; background-color: #ffc107; border: 2px solid #e0a800;">
+								<i class="bx bx-user" style="font-size: 20px; color: #212529;"></i>
 							</div>
 							<div class="user-info ps-3">
 								<p class="user-name mb-0 fw-semibold">{{ Auth::user()->name }}</p>

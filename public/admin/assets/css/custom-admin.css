@@ -1,18 +1,28 @@
-/* Custom Admin Panel Styles - Modern Bootstrap Theme */
+/* Custom Admin Panel Styles - Yellow Theme (matching frontend) */
+
+/* ============================================
+   Yellow Theme Variables
+   ============================================ */
+:root {
+    --admin-primary: #ffc107;
+    --admin-primary-dark: #e0a800;
+    --admin-primary-light: #fff3cd;
+    --admin-primary-text: #212529;
+}
 
 /* ============================================
    Gradient Backgrounds
    ============================================ */
 .bg-gradient-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+    background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%) !important;
 }
 
 .bg-gradient-success {
-    background: linear-gradient(135deg, #1e9600 0%, #07b841 100%) !important;
+    background: linear-gradient(135deg, #ffc107 0%, #f7ca44 100%) !important;
 }
 
 .bg-gradient-warning {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+    background: linear-gradient(135deg, #f7ca44 0%, #ffc107 100%) !important;
 }
 
 .bg-gradient-danger {
@@ -124,7 +134,8 @@
    ============================================ */
 .form-control:focus,
 .form-select:focus {
-    box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+    box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.35);
+    border-color: #ffc107;
 }
 
 .form-label {
@@ -143,15 +154,43 @@
    Sidebar Enhancements
    ============================================ */
 .sidebar-wrapper .sidebar-header {
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: linear-gradient(135deg, #ffc107 0%, #f7ca44 100%) !important;
+    border-bottom: 2px solid #e0a800;
 }
 
+.sidebar-wrapper .sidebar-header .logo-icon {
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.sidebar-wrapper .sidebar-header .toggle-icon i {
+    color: #212529 !important;
+}
+
+/* Sidebar active / hover states */
 .metismenu a {
     transition: all 0.2s ease;
 }
 
 .metismenu a:hover {
-    background-color: rgba(0, 0, 0, 0.03);
+    background-color: rgba(255, 193, 7, 0.12) !important;
+    color: #e0a800 !important;
+}
+
+.metismenu .mm-active > a,
+.metismenu li.active > a {
+    background-color: rgba(255, 193, 7, 0.2) !important;
+    color: #d39e00 !important;
+    border-left: 3px solid #ffc107;
+}
+
+.metismenu a .parent-icon i,
+.metismenu a .menu-title {
+    transition: color 0.2s ease;
+}
+
+.metismenu a:hover .parent-icon i,
+.metismenu a:hover .menu-title {
+    color: #e0a800 !important;
 }
 
 /* ============================================
@@ -162,7 +201,72 @@
 }
 
 .topbar {
-    background: linear-gradient(135deg, #ffffff 0%, #fefefe 100%);
+    background: linear-gradient(135deg, #ffc107 0%, #f7ca44 100%) !important;
+    border-bottom: 2px solid #e0a800 !important;
+}
+
+.topbar .navbar-nav .nav-link {
+    color: #212529 !important;
+}
+
+.topbar .navbar-nav .nav-link:hover {
+    color: #5a3e00 !important;
+}
+
+.topbar .user-box .user-info p {
+    color: #212529 !important;
+}
+
+/* Yellow override for Bootstrap primary elements */
+.btn-primary {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background-color: #e0a800 !important;
+    border-color: #d39e00 !important;
+    color: #212529 !important;
+    box-shadow: 0 4px 10px rgba(255, 193, 7, 0.4) !important;
+}
+
+.text-primary {
+    color: #e0a800 !important;
+}
+
+.bg-primary {
+    background-color: #ffc107 !important;
+}
+
+a {
+    color: #d39e00;
+}
+
+a:hover {
+    color: #b8860b;
+}
+
+/* Badge */
+.badge.bg-primary {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+/* Pagination / active state */
+.page-item.active .page-link {
+    background-color: #ffc107 !important;
+    border-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.page-link {
+    color: #d39e00 !important;
+}
+
+/* Topbar icon buttons */
+.nav-link.dropdown-toggle-nocaret .bx {
+    color: #212529 !important;
 }
 
 /* ============================================
@@ -249,11 +353,17 @@ code {
    Page Footer Enhancement
    ============================================ */
 .page-footer {
-    background: #ffffff;
+    background: #ffc107;
     padding: 1rem;
     text-align: center;
     font-size: 0.875rem;
-    color: #6c757d;
+    color: #212529;
+    border-top: 2px solid #e0a800;
+}
+
+.page-footer a {
+    color: #5a3e00 !important;
+    font-weight: 600;
 }
 
 /* ============================================
@@ -306,4 +416,25 @@ code {
     100% {
         background-position: -200% 0;
     }
+}
+
+/* ============================================
+   Back To Top Button
+   ============================================ */
+.back-to-top {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+    border: 2px solid #e0a800 !important;
+}
+
+.back-to-top:hover {
+    background-color: #e0a800 !important;
+}
+
+/* ============================================
+   Hamburger / mobile toggle
+   ============================================ */
+.mobile-toggle-menu i,
+.toggle-icon i {
+    color: #212529 !important;
 }
