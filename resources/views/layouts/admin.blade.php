@@ -37,7 +37,7 @@
 		<div class="sidebar-wrapper" data-simplebar="true">
 			<div class="sidebar-header shadow-sm">
 				<div>
-					<img src="{{ asset('images/application/'.application()->main_logo) }}" class="logo-icon" alt="logo icon" style="max-height: 75px; width: auto;">
+					<img src="{{ asset('images/application/'.application()->main_logo) }}" class="logo-icon" alt="logo icon" style="max-height: 45px; width: auto;">
 				</div>
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left' style="color: #ffc107;"></i>
 				</div>

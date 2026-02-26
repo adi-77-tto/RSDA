@@ -201,8 +201,9 @@
 }
 
 .topbar {
-    background: linear-gradient(135deg, #ffc107 0%, #f7ca44 100%) !important;
-    border-bottom: 2px solid #e0a800 !important;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e0e0e0 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
 }
 
 .topbar .navbar-nav .nav-link {
@@ -210,7 +211,7 @@
 }
 
 .topbar .navbar-nav .nav-link:hover {
-    color: #5a3e00 !important;
+    color: #ffc107 !important;
 }
 
 .topbar .user-box .user-info p {
@@ -383,6 +384,12 @@ code {
 .search-bar-box .form-control {
     border-radius: 20px;
     padding-left: 40px;
+    border: 1px solid #000000 !important;
+}
+
+.search-bar-box .form-control:focus {
+    border-color: #000000 !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.15) !important;
 }
 
 /* ============================================
