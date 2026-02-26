@@ -74,13 +74,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/news/edit/{id}', [newsController::class, 'edit'])->name('news.edit');
     Route::post('/news/update/{id}', [newsController::class, 'update'])->name('news.update');
 
-    // Photo Gallery
-    Route::get('/gallery/add', [galleryController::class, 'add'])->name('gallery.add');
-    Route::post('/gallery/store', [galleryController::class, 'store'])->name('gallery.store');
-    Route::get('/gallery/index', [galleryController::class, 'index'])->name('gallery.index');
-    Route::get('/gallery/delete/{id}', [galleryController::class, 'destroy'])->name('gallery.delete');
-    Route::get('/gallery/edit/{id}', [galleryController::class, 'edit'])->name('gallery.edit');
-    Route::post('/gallery/update/{id}', [galleryController::class, 'update'])->name('gallery.update');
+    // Photo Gallery — removed from admin panel (images come from programs/news/projects)
+    // Route::get('/gallery/add', [galleryController::class, 'add'])->name('gallery.add');
+    // Route::post('/gallery/store', [galleryController::class, 'store'])->name('gallery.store');
+    // Route::get('/gallery/index', [galleryController::class, 'index'])->name('gallery.index');
+    // Route::get('/gallery/delete/{id}', [galleryController::class, 'destroy'])->name('gallery.delete');
+    // Route::get('/gallery/edit/{id}', [galleryController::class, 'edit'])->name('gallery.edit');
+    // Route::post('/gallery/update/{id}', [galleryController::class, 'update'])->name('gallery.update');
 
     // Subscribe routes removed
 

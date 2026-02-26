@@ -293,11 +293,11 @@ Rural Society Development Association
 
         {{-- photo --}}
         <div class="row g-2">
-            @foreach ($gallery->take(9) as $key => $data)
+            @foreach ($gallery as $key => $data)
                 <div class="col-4 mt-2">
-                    <a href="{{ asset('images/gallery/'.$data->image) }}" class="gallery-lightbox">
+                    <a href="{{ asset($data->image_path) }}" class="gallery-lightbox" title="{{ $data->title ?? '' }}">
                         <div class="gallery-item">
-                            <img src="{{ asset('images/gallery/'.$data->image) }}" class="gallery-img" alt="Gallery Image">
+                            <img src="{{ asset($data->image_path) }}" class="gallery-img" alt="{{ $data->title ?? 'Gallery Image' }}">
                             <div class="gallery-overlay">
                                 <i class="fa-solid fa-magnifying-glass-plus"></i>
                             </div>

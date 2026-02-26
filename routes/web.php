@@ -15,7 +15,34 @@ Route::get('/', function () {
     $slider = DB::table('slider')->get();
     $project = DB::table('ongoing_project')->take(4)->get();
     $news = DB::table('latest_news')->take(6)->get();
-    $gallery = DB::table('gallery')->take(9)->get();
+
+    // Merge gallery images from all sources (same as the full gallery page)
+    $galleryImgs = DB::table('gallery')
+        ->select(DB::raw("CONCAT('images/gallery/', image) as image_path"), 'title')
+        ->get();
+    $programImgs = DB::table('item_images')
+        ->join('programs', function($join){
+            $join->on('item_images.item_id', '=', 'programs.id')
+                 ->where('item_images.item_type', '=', 'program');
+        })
+        ->select(DB::raw("CONCAT('images/programs/', item_images.image) as image_path"), 'programs.title')
+        ->get();
+    $newsImgs = DB::table('item_images')
+        ->join('latest_news', function($join){
+            $join->on('item_images.item_id', '=', 'latest_news.id')
+                 ->where('item_images.item_type', '=', 'news');
+        })
+        ->select(DB::raw("CONCAT('images/news/', item_images.image) as image_path"), 'latest_news.title')
+        ->get();
+    $projectImgs = DB::table('item_images')
+        ->join('ongoing_project', function($join){
+            $join->on('item_images.item_id', '=', 'ongoing_project.id')
+                 ->where('item_images.item_type', '=', 'project');
+        })
+        ->select(DB::raw("CONCAT('images/project/', item_images.image) as image_path"), 'ongoing_project.title')
+        ->get();
+    $gallery = $galleryImgs->merge($programImgs)->merge($newsImgs)->merge($projectImgs)->take(9);
+
     $application = DB::table('applications')->get()->first();
     $programs = DB::table('programs')->orderBy('created_at', 'desc')->take(6)->get();
     $stories = DB::table('stories')->orderBy('id', 'desc')->get();

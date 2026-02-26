@@ -102,21 +102,6 @@
 				</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
-						<div class="parent-icon"><i class="lni lni-image"></i>
-						</div>
-						<div class="menu-title">Photo Gallery</div>
-					</a>
-					<ul>
-						<li>
-                            <a href="{{ route('gallery.add') }}"><i class="bx bx-right-arrow-alt"></i>Add Photo</a>
-						</li>
-						<li>
-                            <a href="{{ route('gallery.index') }}"><i class="bx bx-right-arrow-alt"></i>All Photo</a>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="fadeIn animated bx bx-donate-heart"></i>
 						</div>
 						<div class="menu-title">Donate Now</div>
