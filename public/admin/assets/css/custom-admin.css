@@ -154,8 +154,8 @@
    Sidebar Enhancements
    ============================================ */
 .sidebar-wrapper .sidebar-header {
-    background: linear-gradient(135deg, #ffc107 0%, #f7ca44 100%) !important;
-    border-bottom: 2px solid #e0a800;
+    background: #ffffff !important;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .sidebar-wrapper .sidebar-header .logo-icon {
@@ -354,16 +354,16 @@ code {
    Page Footer Enhancement
    ============================================ */
 .page-footer {
-    background: #ffc107;
+    background: #ffffff;
     padding: 1rem;
     text-align: center;
     font-size: 0.875rem;
-    color: #212529;
-    border-top: 2px solid #e0a800;
+    color: #6c757d;
+    border-top: 1px solid #e0e0e0;
 }
 
 .page-footer a {
-    color: #5a3e00 !important;
+    color: #ffc107 !important;
     font-weight: 600;
 }
 
