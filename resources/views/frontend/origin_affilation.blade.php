@@ -27,10 +27,26 @@
 
       <div class="row">
         <div class="col text-start">
-            <h5>Certificate of Legal Affilation:</h5>
+            <h5 class="mb-4">Certificate of Legal Affilation:</h5>
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mt-1">
                 @foreach ($affilation as $key => $data)
-                    <a href="{{ asset('images/legal_affilation/'.$data->file) }}" target="blank" class="btn btn-warning border border-dark m-2" style="font-size: 20px; font-weight:500; box-shadow: 5px 5px 0 rgba(0,0,0,1);"><i class="fa-solid fa-cloud-arrow-down"></i> {{ $data->name }}</a>
+                    <div class="col">
+                      <a href="{{ asset('images/legal_affilation/'.$data->file) }}" download="{{ $data->name }}.pdf" class="text-decoration-none">
+                        <div class="card border-0 shadow-sm h-100 text-center pdf-card">
+                          <div class="card-body d-flex flex-column align-items-center justify-content-center py-4 px-3">
+                            <i class="fa-solid fa-file-pdf" style="font-size:52px; color:#e03e2d; margin-bottom:14px;"></i>
+                            <p class="mb-0" style="font-size:13px; font-weight:600; color:#222; line-height:1.4; word-break:break-word;">{{ $data->name }}.pdf</p>
+                          </div>
+                          <div class="card-footer bg-transparent border-top-0 pb-3">
+                            <span class="btn btn-sm btn-warning text-dark fw-bold w-100" style="font-size:12px;">
+                              <i class="fa-solid fa-cloud-arrow-down"></i> Download
+                            </span>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
                 @endforeach
+            </div>
         </div>
       </div>
 

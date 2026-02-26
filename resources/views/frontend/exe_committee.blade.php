@@ -11,8 +11,24 @@
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
         <div class="col text-start">
-            <h5>Organizational Structure:</h5>
-                <a href="{{ asset('frontend/file/AFAD_Organogram.pdf') }}" target="blank" class="btn btn-primary border border-dark m-2" style="font-size: 20px; font-weight:500; box-shadow: 5px 5px 0 rgba(0,0,0,1);"><i class="fa-solid fa-cloud-arrow-down"></i> Organizational Structure Pdf</a>
+            <h5 class="mb-4">Organizational Structure:</h5>
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mt-1">
+                <div class="col">
+                  <a href="{{ asset('frontend/file/AFAD_Organogram.pdf') }}" download="Organizational Structure.pdf" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm h-100 text-center pdf-card">
+                      <div class="card-body d-flex flex-column align-items-center justify-content-center py-4 px-3">
+                        <i class="fa-solid fa-file-pdf" style="font-size:52px; color:#e03e2d; margin-bottom:14px;"></i>
+                        <p class="mb-0" style="font-size:13px; font-weight:600; color:#222; line-height:1.4; word-break:break-word;">Organizational Structure.pdf</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top-0 pb-3">
+                        <span class="btn btn-sm btn-warning text-dark fw-bold w-100" style="font-size:12px;">
+                          <i class="fa-solid fa-cloud-arrow-down"></i> Download
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
         </div>
       </div>
 
