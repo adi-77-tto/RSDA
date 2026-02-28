@@ -319,11 +319,6 @@ class frontController extends Controller
 
     //__All Photos
     public function all_photos(){
-        // Gallery table images
-        $galleryImgs = DB::table('gallery')
-            ->select(DB::raw("CONCAT('images/gallery/', image) as image_path"), 'title')
-            ->get();
-
         // Program images
         $programImgs = DB::table('item_images')
             ->join('programs', function($join){
@@ -351,7 +346,7 @@ class frontController extends Controller
             ->select(DB::raw("CONCAT('images/project/', item_images.image) as image_path"), 'ongoing_project.title')
             ->get();
 
-        $allPhotos = $galleryImgs->merge($programImgs)->merge($newsImgs)->merge($projectImgs);
+        $allPhotos = $programImgs->merge($newsImgs)->merge($projectImgs);
 
         // Manual pagination
         $perPage  = 30;

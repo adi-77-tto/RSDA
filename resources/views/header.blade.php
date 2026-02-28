@@ -31,10 +31,10 @@
                     </div>
                 </li>
 
-                {{-- Members --}}
+                {{-- Our Team --}}
                 <li class="nav-item dropdown {{ Request::is('about/us/team/*') || Request::is('committee*') ? 'active' : '' }}">
                     <a class="nav-link dropdown-toggle" href="#" id="membersDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
-                        Members
+                        Our Team
                     </a>
                     <div class="dropdown-menu" aria-labelledby="membersDropdown">
                         <a class="dropdown-item" href="{{ route('team.members') }}">General Members</a>

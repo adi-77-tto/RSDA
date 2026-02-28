@@ -6,30 +6,7 @@
     <div class="container bg-white py-5" data-aos="fade-up">
 
       <div class="section-title">
-        <h2>Governance Structure/Organogram of RSDA</h2>
-      </div>
-
-      <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col text-start">
-            <h5 class="mb-4">Organizational Structure:</h5>
-            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mt-1">
-                <div class="col">
-                  <a href="{{ asset('frontend/file/AFAD_Organogram.pdf') }}" download="Organizational Structure.pdf" class="text-decoration-none">
-                    <div class="card border-0 shadow-sm h-100 text-center pdf-card">
-                      <div class="card-body d-flex flex-column align-items-center justify-content-center py-4 px-3">
-                        <i class="fa-solid fa-file-pdf" style="font-size:52px; color:#e03e2d; margin-bottom:14px;"></i>
-                        <p class="mb-0" style="font-size:13px; font-weight:600; color:#222; line-height:1.4; word-break:break-word;">Organizational Structure.pdf</p>
-                      </div>
-                      <div class="card-footer bg-transparent border-top-0 pb-3">
-                        <span class="btn btn-sm btn-warning text-dark fw-bold w-100" style="font-size:12px;">
-                          <i class="fa-solid fa-cloud-arrow-down"></i> Download
-                        </span>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-            </div>
-        </div>
+        <h2>Executive Member</h2>
       </div>
 
       @if(isset($committee) && count($committee) > 0)
@@ -52,6 +29,29 @@
         @endforeach
       </div>
       @endif
+
+      <div class="row mt-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="col text-start">
+            <h5 class="mb-4">Organizational Structure:</h5>
+            <div class="row row-cols-2 row-cols-sm-2 row-cols-md-4 g-4 mt-1">
+                <div class="col">
+                  <a href="{{ asset('frontend/file/AFAD_Organogram.pdf') }}" download="Organizational Structure.pdf" class="text-decoration-none">
+                    <div class="card border-0 shadow-sm h-100 text-center pdf-card">
+                      <div class="card-body d-flex flex-column align-items-center justify-content-center py-4 px-3">
+                        <i class="fa-solid fa-file-pdf" style="font-size:52px; color:#e03e2d; margin-bottom:14px;"></i>
+                        <p class="mb-0" style="font-size:13px; font-weight:600; color:#222; line-height:1.4; word-break:break-word;">Organizational Structure.pdf</p>
+                      </div>
+                      <div class="card-footer bg-transparent border-top-0 pb-3">
+                        <span class="btn btn-sm btn-warning text-dark fw-bold w-100" style="font-size:12px;">
+                          <i class="fa-solid fa-cloud-arrow-down"></i> Download
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                </div>
+            </div>
+        </div>
+      </div>
 
     </div>
   </section><!-- End Executive Committee Section -->

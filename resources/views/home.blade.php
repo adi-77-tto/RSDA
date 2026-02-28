@@ -283,8 +283,8 @@ Rural Society Development Association
 
 {{-- Photo Gallery --}}
 <div class="bg-light">
-    <div class="container bg-white scroll-reveal">
-        <div class="pt-5 pb-2 text-center">
+    <div class="container bg-white scroll-reveal pb-5">
+        <div class="pt-3 pb-2 text-center">
             <span class="fp-label">OUR GALLERY</span>
             <h2 class="fp-heading mt-1">Photo <span class="fp-heading-accent">Gallery</span></h2>
             <div class="fp-divider mx-auto"></div>
@@ -306,8 +306,9 @@ Rural Society Development Association
                 </div>
             @endforeach
         </div>
+
         {{-- button --}}
-        <div class="d-flex justify-content-center py-5">
+        <div class="d-flex justify-content-center pt-3 pb-2">
             <a href="{{ route('photo.all') }}" class="btn btn-primary"><i class="fa-solid fa-eye"></i> See all Photos</a>
         </div>
     </div>

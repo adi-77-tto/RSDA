@@ -1,6 +1,6 @@
 {{-- Footer started --}}
 <div class="bg-dark" style="border-top:5px solid #f7ca44;">
-    <div class="container py-5">
+    <div class="container py-4">
         <div class="row" id="footer_link_wrapper">
             {{-- logo and short description --}}
             <div class="col-md-4 d-flex align-items-center">
@@ -13,9 +13,9 @@
             </div>
 
             {{-- link and address --}}
-            <div class="col-md-8 mt-5 text-white">
+            <div class="col-md-8 mt-md-0 mt-5 text-white">
                 <div class="row">
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-3">
                         <h5 class="pb-3">Who we are</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('about.us') }}">About RSDA</a></li>
@@ -24,7 +24,7 @@
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('partner.donor') }}">Our Partners and Donor</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-3">
                         <h5 class="pb-3">What we do</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
@@ -32,7 +32,7 @@
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('programs.all') }}">Programs</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-3">
                         <h5 class="pb-3">HELP</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a href="{{ route('faq') }}" class="text-white">FAQ</a></li>
@@ -42,7 +42,7 @@
                             <li class="py-1"><a href="{{ route('volunterr.opportunities') }}" class="text-white">Volunteer Opportunities</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-3 py-4">
+                    <div class="col-md-3 py-3">
                         <h5 class="pb-3">CONTACT</h5>
                         <div class="d-flex py-2" style="font-size: 14px;">
                             <div><i class="fa-solid fa-location-dot mx-2 mt-1"></i></div>

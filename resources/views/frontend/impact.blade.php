@@ -28,7 +28,6 @@
                 <i class="{{ $item->icon }} text-primary" style="font-size: 3rem;"></i>
                 @endif
                 <h3 class="mt-3 mb-2">{{ $item->metric_value }}</h3>
-                <h5 class="text-muted">{{ $item->metric_unit }}</h5>
                 <p class="card-title font-weight-bold">{{ $item->title }}</p>
                 @if($item->description)
                 <p class="card-text small text-secondary">{{ $item->description }}</p>
