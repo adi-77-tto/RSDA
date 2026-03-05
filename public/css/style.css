@@ -1731,16 +1731,16 @@ nav[id*="navbar"],
   font-weight: 700;
   letter-spacing: .3em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.8);
+  color: rgba(0,0,0,0.8);
   margin-bottom: 14px;
   display: block;
 }
 
-/* Large white heading */
+/* Large heading */
 .ss-heading {
   font-size: 2.2rem;
   font-weight: 700;
-  color: #fff;
+  color: #000;
   line-height: 1.25;
   margin: 0 0 18px;
 }
@@ -1748,7 +1748,7 @@ nav[id*="navbar"],
 /* Description */
 .ss-desc {
   font-size: 0.97rem;
-  color: rgba(255,255,255,0.9);
+  color: rgba(0,0,0,0.9);
   line-height: 1.75;
   margin: 0 0 14px;
 }
@@ -1757,7 +1757,7 @@ nav[id*="navbar"],
 .ss-role {
   font-size: 0.85rem;
   font-weight: 600;
-  color: rgba(255,255,255,0.85);
+  color: rgba(0,0,0,0.85);
   margin-bottom: 28px;
 }
 
