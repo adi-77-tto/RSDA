@@ -16,7 +16,7 @@
             <div class="col-md-8 mt-md-0 mt-5 text-white">
                 <div class="row">
                     <div class="col-md-3 py-3">
-                        <h5 class="pb-3">Who we are</h5>
+                        <h5 class="pb-3 text-white fw-bold">Who we are</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('about.us') }}">About RSDA</a></li>
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('vision.mission') }}">Mission & Vision</a></li>
@@ -25,7 +25,7 @@
                         </ul>
                     </div>
                     <div class="col-md-3 py-3">
-                        <h5 class="pb-3">What we do</h5>
+                        <h5 class="pb-3 text-white fw-bold">What we do</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('ongoing.project') }}">Ongoing Project</a></li>
                             <li class="py-1"><a class="dropdown-item text-white" href="{{ route('project.archieve') }}">Project Archieve</a></li>
@@ -33,7 +33,7 @@
                         </ul>
                     </div>
                     <div class="col-md-3 py-3">
-                        <h5 class="pb-3">HELP</h5>
+                        <h5 class="pb-3 text-white fw-bold">HELP</h5>
                         <ul class="p-0 m-0" style="font-size: 14px;">
                             <li class="py-1"><a href="{{ route('faq') }}" class="text-white">FAQ</a></li>
                             <li class="py-1"><a href="{{ route('donate') }}" class="text-white">Donate</a></li>
@@ -43,7 +43,7 @@
                         </ul>
                     </div>
                     <div class="col-md-3 py-3">
-                        <h5 class="pb-3">CONTACT</h5>
+                        <h5 class="pb-3 text-white fw-bold">CONTACT</h5>
                         <div class="d-flex py-2" style="font-size: 14px;">
                             <div><i class="fa-solid fa-location-dot mx-2 mt-1"></i></div>
                             <div>South Tapur Char, Tapur Char<br>Rowmari Upazila, Kurigram District</div>
