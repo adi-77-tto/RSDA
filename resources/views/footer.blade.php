@@ -74,7 +74,7 @@
 
 {{-- copyright --}}
 <div class="p-3" style="background: #000;">
-    <div class="container text-white d-flex justify-content-between">
+    <div class="container text-white d-flex justify-content-center text-center">
     <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="Rural Society Development Association">RSDA</abbr></small>
     </div>
 </div>

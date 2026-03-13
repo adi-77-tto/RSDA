@@ -25,9 +25,9 @@
                         <a class="dropdown-item" href="{{ route('vision.mission') }}">Mission, Vision & Values</a>
                         {{-- <a class="dropdown-item" href="{{ route('key.focus.area') }}">Focus Area</a> --}}
                         <a class="dropdown-item" href="{{ route('origin_affilation') }}">Origin and Legal Affiliation</a>
-                        <a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a>
-                        <a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a>
-                        <a class="dropdown-item" href="{{ route('about.impact') }}">Impact</a>
+                        {{-- <a class="dropdown-item" href="{{ route('cheif.message') }}">Message from Chief Executive</a> --}}
+                        {{-- <a class="dropdown-item" href="{{ route('partner.donor') }}">Our Partners and Donor</a> --}}
+                        {{-- <a class="dropdown-item" href="{{ route('about.impact') }}">Impact</a> --}}
                     </div>
                 </li>
 
