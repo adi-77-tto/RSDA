@@ -279,11 +279,39 @@ Rural Society Development Association
         justify-content: center;
         text-align: center;
         padding: 1rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
     }
-    .partner-card:hover {
+    .partner-card:hover,
+    .partner-card:active {
         border-color: #ffc107;
         transform: translateY(-3px);
         box-shadow: 0 8px 20px rgba(255, 193, 7, 0.15);
+    }
+    .partner-card img {
+        max-width: 100%;
+        max-height: 70px;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+    }
+    .partner-name {
+        position: absolute;
+        bottom: -60px; /* Hidden initially */
+        left: 0;
+        right: 0;
+        background-color: #ffc107;
+        color: #fff;
+        font-weight: bold;
+        font-size: 0.85rem;
+        padding: 8px 10px;
+        transition: bottom 0.3s ease;
+        white-space: normal;
+        line-height: 1.2;
+    }
+    .partner-card:hover .partner-name,
+    .partner-card:active .partner-name {
+        bottom: 0;
     }
 </style>
 <div class="site-section scroll-reveal" style="padding-top: 60px; padding-bottom: 60px; background: #fff;">
@@ -301,14 +329,24 @@ Rural Society Development Association
             <div class="partner-slide-track">
             @if(isset($partners) && $partners->count() > 0)
                 @foreach ($partners as $partner)
-                        <div class="partner-card">
-                            <span class="font-weight-bold" style="color: #444; font-size: 0.9rem; line-height: 1.3; white-space: normal;">{{ $partner->name }}</span>
+                        <div class="partner-card" tabindex="0">
+                            @if(!empty($partner->image))
+                                <img src="{{ asset('images/partner/' . $partner->image) }}" alt="{{ $partner->name }}">
+                            @else
+                                <span class="font-weight-bold" style="color: #444; font-size: 0.9rem; line-height: 1.3; white-space: normal;">{{ $partner->name }}</span>
+                            @endif
+                            <div class="partner-name">{{ $partner->name }}</div>
                         </div>
                 @endforeach
                 {{-- duplicate for infinite scroll effect --}}
                 @foreach ($partners as $partner)
-                        <div class="partner-card">
-                            <span class="font-weight-bold" style="color: #444; font-size: 0.9rem; line-height: 1.3; white-space: normal;">{{ $partner->name }}</span>
+                        <div class="partner-card" tabindex="0">
+                            @if(!empty($partner->image))
+                                <img src="{{ asset('images/partner/' . $partner->image) }}" alt="{{ $partner->name }}">
+                            @else
+                                <span class="font-weight-bold" style="color: #444; font-size: 0.9rem; line-height: 1.3; white-space: normal;">{{ $partner->name }}</span>
+                            @endif
+                            <div class="partner-name">{{ $partner->name }}</div>
                         </div>
                 @endforeach
             @endif
