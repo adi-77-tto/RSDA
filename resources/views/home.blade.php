@@ -244,6 +244,80 @@ Rural Society Development Association
 </div>
 {{-- End of Sponsor --}}
 
+{{-- Partners and Donors --}}
+<style>
+    @keyframes scrollPartners {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-50% - 7.5px)); }
+    }
+    .partner-slider {
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+        width: 100%;
+        padding: 10px 0;
+    }
+    .partner-slide-track {
+        display: inline-flex;
+        gap: 15px;
+        width: max-content;
+        animation: scrollPartners {{ isset($partners) && $partners->count() > 0 ? $partners->count() * 4 : 20 }}s linear infinite;
+    }
+    .partner-slide-track:hover {
+        animation-play-state: paused;
+    }
+    .partner-card {
+        width: 200px; 
+        border: 1px solid #f9f0ce; 
+        border-radius: 12px; 
+        min-height: 100px; 
+        background: #fff; 
+        transition: all 0.3s ease-in-out; 
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1rem;
+    }
+    .partner-card:hover {
+        border-color: #ffc107;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 193, 7, 0.15);
+    }
+</style>
+<div class="site-section scroll-reveal" style="padding-top: 60px; padding-bottom: 60px; background: #fff;">
+    <div class="container pb-4">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-md-10 text-center">
+                 <span class="d-inline-block px-3 py-1 font-weight-bold text-uppercase mb-2" style="color: #ffc107; background-color: #fffde7; border-radius: 50px; font-size: 0.8rem; letter-spacing: 1.5px;">Our Network</span>
+                 <h2 class="fp-heading mt-1">Partners <span class="fp-heading-accent" style="color: #ffc107;">&</span> Donors</h2>
+                <div class="fp-divider mx-auto mb-3" style="background-color: #ffc107;"></div>
+                <p style="color: #666; font-size: 1.1rem; margin-top:-10px;">Organizations and donors who stand with RSDA in building resilient communities.</p>
+            </div>
+        </div>
+
+        <div class="partner-slider">
+            <div class="partner-slide-track">
+            @if(isset($partners) && $partners->count() > 0)
+                @foreach ($partners as $partner)
+                        <div class="partner-card">
+                            <span class="font-weight-bold" style="color: #444; font-size: 0.9rem; line-height: 1.3; white-space: normal;">{{ $partner->name }}</span>
+                        </div>
+                @endforeach
+                {{-- duplicate for infinite scroll effect --}}
+                @foreach ($partners as $partner)
+                        <div class="partner-card">
+                            <span class="font-weight-bold" style="color: #444; font-size: 0.9rem; line-height: 1.3; white-space: normal;">{{ $partner->name }}</span>
+                        </div>
+                @endforeach
+            @endif
+            </div>
+        </div>
+    </div>
+</div>
+{{-- End of Partners and Donors --}}
+
 {{-- Latest News and Events --}}
 <div class="site-section bg-light">
     <div class="container scroll-reveal">

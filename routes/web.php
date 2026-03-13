@@ -44,11 +44,12 @@ Route::get('/', function () {
     $stories = DB::table('stories')->orderBy('id', 'desc')->get();
     $mission_vision = DB::table('mission_vision')->first();
     $impact = DB::table('impact')->orderBy('order', 'asc')->get();
+    $partners = DB::table('partners')->get();
 
     // Get the 'People' metric value for the counter
     $people_metric = DB::table('impact')->whereRaw('LOWER(title) = ?', ['people'])->first();
 
-    return view('home', compact('slider', 'project', 'news', 'gallery', 'application', 'programs', 'stories', 'mission_vision', 'impact', 'people_metric'));
+    return view('home', compact('slider', 'project', 'news', 'gallery', 'application', 'programs', 'stories', 'mission_vision', 'impact', 'people_metric', 'partners'));
 });
 
 Route::post('volunteer/apply', [frontController::class, 'volunteerApply'])->name('volunteer.apply');

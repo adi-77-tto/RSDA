@@ -60,22 +60,6 @@
                             <div><i class="fa-solid fa-envelope mx-2 mt-1"></i></div>
                             <div>rsda_kurigram@yahoo.com</div>
                         </div>
-                        <div>
-                            <ul class="d-flex">
-                                <li class="me-2">
-                                <a href="{{ application()->facebook }}" target="blank"><i class="fa-brands fa-facebook-f px-1 text-white"></i></a>
-                                </li class="mx-2">
-                                <li>
-                                <a href="{{ application()->twitter }}" target="blank"><i class="fa-brands fa-twitter px-1 text-white"></i></a>
-                                </li>
-                                <li class="mx-2">
-                                <a href="{{ application()->instagram }}" target="blank"><i class="fa-brands fa-instagram px-1 text-white"></i></a>
-                                </li>
-                                <li class="">
-                                <a href="{{ application()->youtube }}" target="blank"><i class="fa-brands fa-youtube px-1 text-white"></i></a>
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -92,6 +76,5 @@
 <div class="p-3" style="background: #000;">
     <div class="container text-white d-flex justify-content-between">
     <small> Copyright © {{ date('Y') }} || All right reserved by <abbr title="Rural Society Development Association">RSDA</abbr></small>
-       <small> Developed By: <span title="Noakhali Science and Technology University">NSTU</span> Software Development Team</small>
     </div>
 </div>

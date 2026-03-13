@@ -810,7 +810,7 @@
 		<!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 		<!--End Back To Top Button-->
 		<footer class="page-footer shadow">
-			<p class="mb-0">Copyright © {{ @date('Y') }}. All rights reserved RSDA | Developed By: <a href="#" class="text-decoration-none text-primary">NSTU Software Development Team</a></p>
+			<p class="mb-0">Copyright © {{ @date('Y') }}. All rights reserved RSDA</p>
 		</footer>
 	</div>
 	<!--end wrapper-->
